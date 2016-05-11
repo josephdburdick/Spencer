@@ -20,10 +20,10 @@ export const updateExpense = new ValidatedMethod({
   name: 'expenses.update',
   validate: new SimpleSchema({
     _id: { type: String },
-    'update.price'       : { type : Number, optional : true },
-    'update.description' : { type : String, optional : true },
-    'update.category'    : { type : String, optional : true },
-    'update.business'    : { type : String, optional : true },
+    'expenseUpdate.price'       : { type : Number, optional : true },
+    'expenseUpdate.description' : { type : String, optional : true },
+    'expenseUpdate.category'    : { type : String, optional : true },
+    'expenseUpdate.business'    : { type : String, optional : true },
   }).validator(),
   run({ _id, update }) {
     Expenses.update(_id, { $set: update });

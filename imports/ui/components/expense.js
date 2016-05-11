@@ -9,8 +9,8 @@ const handleUpdateExpense = (expenseId, event) => {
   const category    = "category";
   const business    = "business";
     updateExpense.call({
-      _id: documentId,
-      update: { price, description,category,business },
+      _id: expenseId,
+      expenseUpdate: { price, description, category, business },
     }, (error) => {
       if (error) {
         Bert.alert(error.reason, 'danger');
