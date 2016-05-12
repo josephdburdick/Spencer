@@ -5,7 +5,7 @@ import { ValidatedMethod } from 'meteor/mdg:validated-method';
 export const insertExpense = new ValidatedMethod({
   name: 'expenses.insert',
   validate: new SimpleSchema({
-    'expense.price'       : { type : Number }, //assume String for now but might change to Number
+    'expense.price'       : { type : Number, decimal: true }, //assume String for now but might change to Number
     'expense.description' : { type : String },
     'expense.category'    : { type : String },
     'expense.business'    : { type : String },
@@ -20,7 +20,7 @@ export const updateExpense = new ValidatedMethod({
   name: 'expenses.update',
   validate: new SimpleSchema({
     _id: { type: String },
-    'expenseUpdate.price'       : { type : Number, optional : true },
+    'expenseUpdate.price'       : { type : Number, decimal: true, optional: true },
     'expenseUpdate.description' : { type : String, optional : true },
     'expenseUpdate.category'    : { type : String, optional : true },
     'expenseUpdate.business'    : { type : String, optional : true },

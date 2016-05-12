@@ -11,3 +11,40 @@
     clear: both;
   }
 }
+html, body, #react-root{
+  min-height: 100vh;
+}
+
+html {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  font-size: 16px;
+}
+
+$gutter-size: 1rem;
+
+.row{
+  &.row--half-gutter{
+    $gutter-size: $gutter-size / 2;
+    margin-left: -($gutter-size / 2);
+    margin-right: -($gutter-size / 2);
+
+    [class*="col-"],
+    [class*=" col-"]{
+      padding-left: $gutter-size;
+      padding-right: $gutter-size;
+    }
+    .form-group{
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+.well{
+  & > [class*="row"],
+  & > [class*=" row"]{
+    & + & {
+      margin-top: 1rem;
+    }
+  }
+}
