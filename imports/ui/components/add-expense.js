@@ -1,32 +1,133 @@
-import React from 'react';
-import { FormGroup, FormControl } from 'react-bootstrap';
+import { Meteor } from 'meteor/meteor';
+import React, {Component, PropTypes} from 'react';
+import { Row, Col, FormGroup, FormControl, Well, InputGroup, Button, DropdownButton, MenuItem } from 'react-bootstrap';
 import { Bert } from 'meteor/themeteorchef:bert';
+import { CategorySelect } from './category-select.js';
+import { BusinessSelect } from './business-select.js';
 import { insertExpense } from '../../api/expenses/methods.js';
 
-const handleInsertExpense = (event) => {
-  const target      = event.target;
-  const price       = "price";
-  const description = "description";
-  const category    = "category";
-  const business    = "business";
-  insertExpense.call({
-    expense : {price, description, category, business},
-  }, (error) => {
-    if (error) {
-      Bert.alert(error.reason, 'danger');
-    } else {
-      //%%clear entire form based on refs or what not.
-      Bert.alert('Expense added!', 'success');
-    }
-  });
-};
+export class AddExpense extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isProcessing: false,
+      price: 0,
+      description: '',
+      categories: [],
+      category: '',
+      business: ''
+    };
 
-export const AddExpense = () => (
-  // <FormGroup>
-  //   <FormControl
-  //     type="text"
-  //     onKeyUp={ handleInsertExpense }
-  //     placeholder="Type a document title and press enter..."
-  //   />
-  // </FormGroup>
-);
+    this.handleInsertExpense = this.handleInsertExpense.bind(this);
+    this.handlePriceChange = this.handlePriceChange.bind(this);
+    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
+    this.handleCategoryChange = this.handleCategoryChange.bind(this);
+    this.handleBusinessChange = this.handleBusinessChange.bind(this);
+  }
+  handleResetForm (){
+    this.setState({
+      isProcessing: false,
+      price: 0,
+      description: '',
+      category: '',
+      business: ''
+    });
+  }
+  handleInsertExpense (event) {
+    event.preventDefault();
+    this.setState({isProcessing: true});
+
+    insertExpense.call({
+      userId: Meteor.userId(),
+      price: this.state.price,
+      description: this.state.description,
+      category: this.state.category,
+      business: this.state.business
+    }, (error) => {
+      if (error) {
+        console.log(error);
+        Bert.alert(error.reason, 'danger');
+        this.setState({isProcessing: false});
+      } else {
+        //%%clear entire form based on refs or what not.
+        Bert.alert('Expense added!', 'success');
+        resetFormState();
+      }
+    });
+  }
+
+  handlePriceChange (event) {
+    this.setState({price: parseFloat(event.target.value) });
+  }
+
+  handleDescriptionChange (event) {
+    this.setState({description: event.target.value});
+  }
+
+  handleCategoryChange (event) {
+    console.log(event);
+    console.log(this.state);
+    this.setState({category: event.value}); // array index here because it returns an array if multi={true}
+  }
+
+  handleBusinessChange (event) {
+    console.log(event);
+    console.log(this.state);
+    this.setState({business: event.value});
+  }
+
+  render() {
+    let isProcessing = this.state.isProcessing;
+
+    return (
+      <form onSubmit={this.handleInsertExpense}>
+        <Well bsSize="small">
+          <Row className="row--half-gutter">
+            <Col xs={12} sm={9}>
+              <FormGroup>
+                <FormControl data-role="description" type="text" onChange={this.handleDescriptionChange} placeholder="Type a description of expense"/>
+              </FormGroup>
+            </Col>
+            <Col xs={12} sm={3}>
+              <FormGroup>
+                <InputGroup>
+                  <InputGroup.Addon>$</InputGroup.Addon>
+                  <FormControl data-role="price" type="number" min="0" step="0.25" onChange={this.handlePriceChange} placeholder="Price"/>
+                </InputGroup>
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row className="row--half-gutter">
+            <Col xs={12} sm={6}>
+              <FormGroup>
+                <CategorySelect onChange={ this.handleCategoryChange } value={this.state.category} />
+              </FormGroup>
+            </Col>
+            <Col xs={12} sm={6}>
+              <FormGroup>
+                <BusinessSelect onChange={ this.handleBusinessChange } value={this.state.business} />
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={12} className="text-right">
+              <Button
+                bsStyle={isProcessing ? 'default' : 'success'}
+                type="submit"
+                disabled={isProcessing}>
+                  {isProcessing ? 'Adding Expense...' : 'Add Expense'}
+              </Button>
+            </Col>
+          </Row>
+        </Well>
+      </form>
+    )
+  }
+}
+
+AddExpense.propTypes = {
+  userBusinesses: PropTypes.arrayOf(PropTypes.string),
+  category: PropTypes.arrayOf(PropTypes.string),
+
+};
+// AddExpense.defaultProps = { initialCount: 0 };

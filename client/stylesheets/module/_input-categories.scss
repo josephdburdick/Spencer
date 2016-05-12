@@ -1,0 +1,55 @@
+.form-group__categories-input {
+  @extend .dropup;
+  @extend .open;
+  @extend .form-group;
+
+  input[type="text"] {
+    @extend .form-control;
+
+    // & ~ .suggestions-list{
+    //   display: none;
+    // }
+    // &:active, &:focus {
+    //   & ~ .suggestions-list {
+    //     display: block;
+    //   }
+    // }
+  }
+  .suggestions-list{
+    @extend .dropdown-menu;
+
+    ul {
+      list-style: none;
+      padding: 0;
+
+      li > span {
+        display: block;
+        padding: 3px 20px;
+        clear: both;
+        font-weight: normal;
+        color: $dropdown-link-color;
+        white-space: nowrap;
+
+        &:hover{
+          color: $dropdown-link-hover-color;
+          background-color: $dropdown-link-hover-bg;
+        }
+        &:active, &.active{
+          color: $dropdown-link-hover-color;
+          background-color: $dropdown-link-hover-bg;
+        }
+        &.disabled{
+          color: $dropdown-link-disabled-color;
+        }
+      }
+    }
+
+    mark{
+      padding: 0;
+      margin: 0;
+      font-size: 0;
+      display: inline-block;
+      background-color: transparent;
+    }
+  }
+}
