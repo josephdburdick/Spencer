@@ -2,6 +2,9 @@ import { Meteor } from 'meteor/meteor';
 import { Roles } from 'meteor/alanning:roles';
 import { Accounts } from 'meteor/accounts-base';
 
+import {Categories} from '../../api/categories/categories.js';
+import categorySeedData from '../../api/categories/categories.json';
+
 const users = [{
   email: 'admin@admin.com',
   password: 'password',
@@ -19,3 +22,11 @@ users.forEach(({ email, password, profile, roles }) => {
     Roles.addUsersToRoles(userId, roles);
   }
 });
+
+if (!Categories.find().count()) {
+  categorySeedData.forEach((category) => {
+    console.log(category);
+    const result = Categories.insert(category);
+    console.log(result);
+  });
+}

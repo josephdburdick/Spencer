@@ -5,7 +5,7 @@ import { AddExpense } from '../components/add-expense.js';
 
 export const Expenses = () => (
   <Row>
-    <Col xs={ 12 }>
+    <Col xs={ 12 } sm={8} smOffset={2}>
       <h4 className="page-header">Expenses</h4>
       <ExpensesList />
       <AddExpense />

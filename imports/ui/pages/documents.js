@@ -5,7 +5,7 @@ import { AddDocument } from '../components/add-document.js';
 
 export const Documents = () => (
   <Row>
-    <Col xs={ 12 }>
+    <Col xs={ 12 } sm={8} smOffset={2}>
       <h4 className="page-header">Documents</h4>
       <AddDocument />
       <DocumentsList />

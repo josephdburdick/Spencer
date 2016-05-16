@@ -1,0 +1,331 @@
+[{
+  "value": "Auto & Transport",
+  "label": "Auto & Transport"
+}, {
+  "value": "Auto Insurance",
+  "label": "Auto Insurance"
+}, {
+  "value": "Auto Payment",
+  "label": "Auto Payment"
+}, {
+  "value": "Gas & Fuel",
+  "label": "Gas & Fuel"
+}, {
+  "value": "Parking",
+  "label": "Parking"
+}, {
+  "value": "Public Transportation",
+  "label": "Public Transportation"
+}, {
+  "value": "Service & Parts",
+  "label": "Service & Parts"
+}, {
+  "value": "Bills & Utilities",
+  "label": "Bills & Utilities"
+}, {
+  "value": "Home Phone",
+  "label": "Home Phone"
+}, {
+  "value": "Internet",
+  "label": "Internet"
+}, {
+  "value": "Mobile Phone",
+  "label": "Mobile Phone"
+}, {
+  "value": "Television",
+  "label": "Television"
+}, {
+  "value": "Utilities",
+  "label": "Utilities"
+}, {
+  "value": "Business Services",
+  "label": "Business Services"
+}, {
+  "value": "Advertising",
+  "label": "Advertising"
+}, {
+  "value": "Legal",
+  "label": "Legal"
+}, {
+  "value": "Office Supplies",
+  "label": "Office Supplies"
+}, {
+  "value": "Printing",
+  "label": "Printing"
+}, {
+  "value": "Shipping",
+  "label": "Shipping"
+}, {
+  "value": "Education",
+  "label": "Education"
+}, {
+  "value": "Books & Supplies",
+  "label": "Books & Supplies"
+}, {
+  "value": "Student Loan",
+  "label": "Student Loan"
+}, {
+  "value": "Tuition",
+  "label": "Tuition"
+}, {
+  "value": "Entertainment",
+  "label": "Entertainment"
+}, {
+  "value": "Amusement",
+  "label": "Amusement"
+}, {
+  "value": "Arts",
+  "label": "Arts"
+}, {
+  "value": "Movies & DVDs",
+  "label": "Movies & DVDs"
+}, {
+  "value": "Music",
+  "label": "Music"
+}, {
+  "value": "Newspapers & Magazines",
+  "label": "Newspapers & Magazines"
+}, {
+  "value": "Fees & Charges",
+  "label": "Fees & Charges"
+}, {
+  "value": "ATM Fee",
+  "label": "ATM Fee"
+}, {
+  "value": "Bank Fee",
+  "label": "Bank Fee"
+}, {
+  "value": "Finance Charge",
+  "label": "Finance Charge"
+}, {
+  "value": "Late Fee",
+  "label": "Late Fee"
+}, {
+  "value": "Service Fee",
+  "label": "Service Fee"
+}, {
+  "value": "Trade Commissions",
+  "label": "Trade Commissions"
+}, {
+  "value": "Financial",
+  "label": "Financial"
+}, {
+  "value": "Financial Advisor",
+  "label": "Financial Advisor"
+}, {
+  "value": "Life Insurance",
+  "label": "Life Insurance"
+}, {
+  "value": "Food & Dining",
+  "label": "Food & Dining"
+}, {
+  "value": "Alcohol & Bars",
+  "label": "Alcohol & Bars"
+}, {
+  "value": "Coffee Shops",
+  "label": "Coffee Shops"
+}, {
+  "value": "Fast Food",
+  "label": "Fast Food"
+}, {
+  "value": "Groceries",
+  "label": "Groceries"
+}, {
+  "value": "Restaurants",
+  "label": "Restaurants"
+}, {
+  "value": "Gifts & Donations",
+  "label": "Gifts & Donations"
+}, {
+  "value": "Charity",
+  "label": "Charity"
+}, {
+  "value": "Gift",
+  "label": "Gift"
+}, {
+  "value": "Health & Fitness",
+  "label": "Health & Fitness"
+}, {
+  "value": "Dentist",
+  "label": "Dentist"
+}, {
+  "value": "Doctor",
+  "label": "Doctor"
+}, {
+  "value": "Eyecare",
+  "label": "Eyecare"
+}, {
+  "value": "Gym",
+  "label": "Gym"
+}, {
+  "value": "Health Insurance",
+  "label": "Health Insurance"
+}, {
+  "value": "Pharmacy",
+  "label": "Pharmacy"
+}, {
+  "value": "Sports",
+  "label": "Sports"
+}, {
+  "value": "Home",
+  "label": "Home"
+}, {
+  "value": "Furnishings",
+  "label": "Furnishings"
+}, {
+  "value": "Home Improvement",
+  "label": "Home Improvement"
+}, {
+  "value": "Home Insurance",
+  "label": "Home Insurance"
+}, {
+  "value": "Home Services",
+  "label": "Home Services"
+}, {
+  "value": "Home Supplies",
+  "label": "Home Supplies"
+}, {
+  "value": "Lawn & Garden",
+  "label": "Lawn & Garden"
+}, {
+  "value": "Mortgage & Rent",
+  "label": "Mortgage & Rent"
+}, {
+  "value": "Income",
+  "label": "Income"
+}, {
+  "value": "Bonus",
+  "label": "Bonus"
+}, {
+  "value": "Interest Income",
+  "label": "Interest Income"
+}, {
+  "value": "Paycheck",
+  "label": "Paycheck"
+}, {
+  "value": "Reimbursement",
+  "label": "Reimbursement"
+}, {
+  "value": "Rental Income",
+  "label": "Rental Income"
+}, {
+  "value": "Returned Purchase",
+  "label": "Returned Purchase"
+}, {
+  "value": "Kids",
+  "label": "Kids"
+}, {
+  "value": "Allowance",
+  "label": "Allowance"
+}, {
+  "value": "Baby Supplies",
+  "label": "Baby Supplies"
+}, {
+  "value": "Babysitter & Daycare",
+  "label": "Babysitter & Daycare"
+}, {
+  "value": "Child Support",
+  "label": "Child Support"
+}, {
+  "value": "Kids Activities",
+  "label": "Kids Activities"
+}, {
+  "value": "Toys",
+  "label": "Toys"
+}, {
+  "value": "Misc Expenses",
+  "label": "Misc Expenses"
+}, {
+  "value": "Personal Care",
+  "label": "Personal Care"
+}, {
+  "value": "Hair",
+  "label": "Hair"
+}, {
+  "value": "Laundry",
+  "label": "Laundry"
+}, {
+  "value": "Spa & Massage",
+  "label": "Spa & Massage"
+}, {
+  "value": "Pets",
+  "label": "Pets"
+}, {
+  "value": "Pet Food & Supplies",
+  "label": "Pet Food & Supplies"
+}, {
+  "value": "Pet Grooming",
+  "label": "Pet Grooming"
+}, {
+  "value": "Veterinary",
+  "label": "Veterinary"
+}, {
+  "value": "Shopping",
+  "label": "Shopping"
+}, {
+  "value": "Books",
+  "label": "Books"
+}, {
+  "value": "Clothing",
+  "label": "Clothing"
+}, {
+  "value": "Electronics & Software",
+  "label": "Electronics & Software"
+}, {
+  "value": "Hobbies",
+  "label": "Hobbies"
+}, {
+  "value": "Sporting Goods",
+  "label": "Sporting Goods"
+}, {
+  "value": "Taxes",
+  "label": "Taxes"
+}, {
+  "value": "Federal Tax",
+  "label": "Federal Tax"
+}, {
+  "value": "Local Tax",
+  "label": "Local Tax"
+}, {
+  "value": "Property Tax",
+  "label": "Property Tax"
+}, {
+  "value": "Sales Tax",
+  "label": "Sales Tax"
+}, {
+  "value": "State Tax",
+  "label": "State Tax"
+}, {
+  "value": "Transfer",
+  "label": "Transfer"
+}, {
+  "value": "Credit Card Payment",
+  "label": "Credit Card Payment"
+}, {
+  "value": "Transfer for Cash Spending",
+  "label": "Transfer for Cash Spending"
+}, {
+  "value": "Travel",
+  "label": "Travel"
+}, {
+  "value": "Air Travel",
+  "label": "Air Travel"
+}, {
+  "value": "Hotel",
+  "label": "Hotel"
+}, {
+  "value": "Rental Car & Taxi",
+  "label": "Rental Car & Taxi"
+}, {
+  "value": "Vacation",
+  "label": "Vacation"
+}, {
+  "value": "Uncategorized",
+  "label": "Uncategorized"
+}, {
+  "value": "Cash & ATM",
+  "label": "Cash & ATM"
+}, {
+  "value": "Check",
+  "label": "Check"
+}]

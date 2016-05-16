@@ -1,6 +1,9 @@
-import React, {Component} from 'react';
+import { Meteor } from 'meteor/meteor';
+import React, {Component, PropTypes} from 'react';
 import { Row, Col, FormGroup, FormControl, Well, InputGroup, Button, DropdownButton, MenuItem } from 'react-bootstrap';
 import { Bert } from 'meteor/themeteorchef:bert';
+import { CategorySelect } from './category-select.js';
+import { BusinessSelect } from './business-select.js';
 import { insertExpense } from '../../api/expenses/methods.js';
 
 export class AddExpense extends Component {
@@ -10,106 +13,111 @@ export class AddExpense extends Component {
       isProcessing: false,
       price: 0,
       description: '',
-      category: [],
+
+      categories: [],
+      category: '',
       business: ''
     };
 
     this.handleInsertExpense = this.handleInsertExpense.bind(this);
     this.handlePriceChange = this.handlePriceChange.bind(this);
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
-    this.handleCategoriesChange = this.handleCategoriesChange.bind(this);
-    this.handleBusinessSelect = this.handleBusinessSelect.bind(this);
-  }
+    this.handleCategoryChange = this.handleCategoryChange.bind(this);
+    this.handleBusinessChange = this.handleBusinessChange.bind(this);
 
+    this.handleResetForm = this.handleResetForm.bind(this);
+  }
+  handleResetForm () {
+    this.setState({
+      isProcessing: false,
+      price: 0,
+      description: '',
+      category: '',
+      business: ''
+    });
+  }
   handleInsertExpense (event) {
     event.preventDefault();
-    this.setState({isProcessing: true})
-    const {
-      price,
-      description,
-      category,
-      business
-    } = this.state;
+    this.setState({isProcessing: true});
+
     insertExpense.call({
-      expense: {
-        price, description, category, business
-      }
+      userId: Meteor.userId(),
+      price: this.state.price,
+      description: this.state.description,
+      category: this.state.category,
+      business: this.state.business
     }, (error) => {
       if (error) {
+        console.log(error);
         Bert.alert(error.reason, 'danger');
         this.setState({isProcessing: false});
       } else {
-        //%%clear entire form based on refs or what not.
         Bert.alert('Expense added!', 'success');
-        this.setState({isProcessing: false});
+        this.handleResetForm();
       }
     });
   }
 
   handlePriceChange (event) {
-    const inputString = event.target.value;
-    const inputWithoutDigits = inputString.replace(/\D/g,'');
-    event.target.value = parseFloat(inputWithoutDigits).toFixed(2)
-    console.log(parseFloat(event.target.value));
-    this.setState({price: parseFloat(event.target.value)});
+    this.setState({price: parseFloat(event.target.value) });
   }
 
   handleDescriptionChange (event) {
     this.setState({description: event.target.value});
   }
 
-  handleCategoriesChange (event) {
-    this.setState({category: event.target.value});
+  handleCategoryChange (event) {
+    console.log(event);
+    console.log(this.state);
+    this.setState({category: event.value}); // array index here because it returns an array if multi={true}
   }
 
-  handleBusinessSelect (event) {
-
+  handleBusinessChange (event) {
+    console.log(event);
+    console.log(this.state);
+    this.setState({business: event.value});
   }
 
   render() {
     let isProcessing = this.state.isProcessing;
-    const renderDropdownBusinessOptions = (
-      <DropdownButton dropup bsStyle="link" title="For: AirBnB" id="dropdown_select-business" onSelect={this.handleBusinessSelect}>
-        <MenuItem eventKey="1" active>Last: AirBnB</MenuItem>
-        <MenuItem divider />
-        <MenuItem eventKey="2">AirBnb</MenuItem>
-        <MenuItem eventKey="3">Freelance Web</MenuItem>
-      </DropdownButton>
-    );
     return (
       <form onSubmit={this.handleInsertExpense}>
         <Well bsSize="small">
           <Row className="row--half-gutter">
-            <Col xs={4} sm={3} md={2}>
+            <Col xs={12} sm={9}>
+              <FormGroup>
+                <FormControl type="text" onChange={this.handleDescriptionChange} value={this.state.description} placeholder="Type a description of expense"/>
+              </FormGroup>
+            </Col>
+            <Col xs={12} sm={3}>
               <FormGroup>
                 <InputGroup>
                   <InputGroup.Addon>$</InputGroup.Addon>
-                <FormControl data-role="price" type="number" min="0" step="0.25" onChange={this.handlePriceChange} placeholder="Price"/>
+                  <FormControl type="number" min="0" onChange={this.handlePriceChange} value={this.state.price} placeholder="Price"/>
                 </InputGroup>
-              </FormGroup>
-            </Col>
-            <Col xs={8} sm={9} md={10}>
-              <FormGroup>
-                <FormControl data-role="description" type="text" onChange={this.handleDescriptionChange} placeholder="Type a description of expense"/>
               </FormGroup>
             </Col>
           </Row>
           <Row className="row--half-gutter">
-            <Col xs={12} sm={7}>
+            <Col xs={12} sm={6}>
               <FormGroup>
-                <FormControl data-role="categories" type="text" onChange={this.handleCategoriesChange} placeholder="Categories"/>
+                <CategorySelect onChange={ this.handleCategoryChange } value={this.state.category} />
               </FormGroup>
             </Col>
-            <Col xs={12} sm={5}>
-              <div className="pull-right">
-                Needs business selector.
-                <Button
-                  bsStyle="success"
-                  type="submit"
-                  disabled={isProcessing}>
-                    {isProcessing ? 'Adding Expense...' : 'Add Expense'}
-                </Button>
-              </div>
+            <Col xs={12} sm={6}>
+              <FormGroup>
+                <BusinessSelect onChange={ this.handleBusinessChange } value={this.state.business} />
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={12} className="text-right">
+              <Button
+                bsStyle={isProcessing ? 'default' : 'success'}
+                type="submit"
+                disabled={isProcessing}>
+                  {isProcessing ? 'Adding Expense...' : 'Add Expense'}
+              </Button>
             </Col>
           </Row>
         </Well>
@@ -118,5 +126,8 @@ export class AddExpense extends Component {
   }
 }
 
-// AddExpense.propTypes = { category: React.PropTypes.number };
-// AddExpense.defaultProps = { initialCount: 0 };
+// AddExpense.propTypes = {
+//   userBusinesses: PropTypes.arrayOf(PropTypes.string),
+//   category: PropTypes.arrayOf(PropTypes.string),
+// };
+AddExpense.defaultProps = { initialCount: 0 };
