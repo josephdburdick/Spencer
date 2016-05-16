@@ -12,8 +12,6 @@ export const insertExpense = new ValidatedMethod({
     business    : { type : String }
   }).validator(),
     run(expense) {
-      // Extend the payload with userId for association.
-      expense = Object.assign(expense, {userId: Meteor.userId()})
       Expenses.insert(expense);
     }
 });
