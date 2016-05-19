@@ -4,7 +4,7 @@ import _ from 'lodash';
 
 import { Businesses } from '../../api/businesses/businesses.js';
 
-export class BusinessSelect extends Component {
+export default class BusinessSelect extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -18,7 +18,8 @@ export class BusinessSelect extends Component {
         }
       ],
       category: '',
-      value: this.props.value
+      value: this.props.value,
+      disabled: this.props.disabled
     }
   }
 
@@ -33,6 +34,7 @@ export class BusinessSelect extends Component {
           onChange={this.props.onChange}
           value={this.props.value}
           allowCreate={true}
+          disabled={this.props.disabled}
         />
       </div>
     )

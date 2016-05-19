@@ -4,13 +4,14 @@ import _ from 'lodash';
 
 import categoriesArray from '../../api/categories/categories.json';
 
-export class CategorySelect extends Component {
+export default class CategorySelect extends Component {
   constructor(props){
     super(props);
     this.state = {
       categories: categoriesArray,
       category: '',
-      value: this.props.value
+      value: this.props.value,
+      disabled: this.props.disabled
     }
   }
 
@@ -25,6 +26,7 @@ export class CategorySelect extends Component {
           onChange={this.props.onChange}
           value={this.props.value}
           allowCreate={true}
+          disabled={this.props.disabled}
         />
       </div>
     )
