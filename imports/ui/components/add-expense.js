@@ -2,11 +2,11 @@ import { Meteor } from 'meteor/meteor';
 import React, {Component, PropTypes} from 'react';
 import { Row, Col, FormGroup, FormControl, Well, InputGroup, Button, DropdownButton, MenuItem } from 'react-bootstrap';
 import { Bert } from 'meteor/themeteorchef:bert';
-import { CategorySelect } from './category-select.js';
-import { BusinessSelect } from './business-select.js';
+import CategorySelect from './category-select.js';
+import BusinessSelect from './business-select.js';
 import { insertExpense } from '../../api/expenses/methods.js';
 
-export class AddExpense extends Component {
+class AddExpense extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -67,14 +67,10 @@ export class AddExpense extends Component {
   }
 
   handleCategoryChange (event) {
-    console.log(event);
-    console.log(this.state);
-    this.setState({category: event.value}); // array index here because it returns an array if multi={true}
+    this.setState({category: event.value});
   }
 
   handleBusinessChange (event) {
-    console.log(event);
-    console.log(this.state);
     this.setState({business: event.value});
   }
 
@@ -126,8 +122,6 @@ export class AddExpense extends Component {
   }
 }
 
-// AddExpense.propTypes = {
-//   userBusinesses: PropTypes.arrayOf(PropTypes.string),
-//   category: PropTypes.arrayOf(PropTypes.string),
-// };
 AddExpense.defaultProps = { initialCount: 0 };
+
+export default AddExpense;

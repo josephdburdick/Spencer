@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 import ExpensesList from '../containers/expenses-list.js';
-import { AddExpense } from '../components/add-expense.js';
+import AddExpense from '../components/add-expense.js';
 
 export const Expenses = () => (
   <Row>
