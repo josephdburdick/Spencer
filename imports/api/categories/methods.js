@@ -28,7 +28,7 @@ export const updateCategory = new ValidatedMethod({
 
 export const getCategories = new ValidatedMethod({
   name: 'categories.retrieve',
-  run : {
+  run(){
     Categories.find({
       userId : {$in: ["admin", Meteor.userId()]} //admin user hardcoded on seeding - so find all global and user specific categories
     }).fetch()
