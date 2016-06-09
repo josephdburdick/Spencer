@@ -83,6 +83,7 @@ export class Expense extends Component {
     this.setState({description: event.target.value});
   }
   handleCategoryChange (event) {
+    console.log(event);
     this.setState({category: event.value});
   }
   handleBusinessChange (event) {
@@ -106,6 +107,7 @@ export class Expense extends Component {
           </Button>
         )
         : (
+        <FormGroup>
           <div>
             <Button
               bsStyle="default"
@@ -113,6 +115,8 @@ export class Expense extends Component {
               onClick={ this.handleToggleEditMode.bind(this, this.state._id) }>
               Cancel
             </Button>
+          </div>
+          <div>
             <Button
               bsStyle="info"
               className="btn-block"
@@ -120,6 +124,7 @@ export class Expense extends Component {
               Update
             </Button>
           </div>
+        </FormGroup>
         )
     );
     const toggleDeleteButton = (
