@@ -66,12 +66,12 @@ class AddExpense extends Component {
     this.setState({description: event.target.value});
   }
 
-  handleCategoryChange (event) {
-    this.setState({category: event.value});
+  handleCategoryChange (value) {
+    this.setState({category: value});
   }
 
-  handleBusinessChange (event) {
-    this.setState({business: event.value});
+  handleBusinessChange (value) {
+    this.setState({business: value});
   }
 
   render() {

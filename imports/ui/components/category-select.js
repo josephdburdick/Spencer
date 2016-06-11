@@ -28,16 +28,18 @@ export default class CategorySelect extends Component {
     // }
     const options = this.state.categories;
     return (
-      <Select
-        placeholder={this.props.placeholder}
-        name={this.props.name}
-        options={options}
-        onChange={this.props.handleCategoryChange}
-        value={this.props.value}
-        multi={this.props.multi}
-        disabled={this.props.disabled}
-        allowCreate
-      />
+      <div>
+        <Select
+          placeholder={this.props.placeholder}
+          name={this.props.name}
+          options={options}
+          onChange={this.props.onChange}
+          value={this.props.value}
+          multi={this.props.multi}
+          disabled={this.props.disabled}
+          allowCreate={true}
+        />
+      </div>
     )
   }
 }
