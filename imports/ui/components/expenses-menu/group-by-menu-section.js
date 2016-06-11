@@ -10,35 +10,37 @@ class GroupByMenuSection extends React.Component {
         <Col md={7}>
           <ButtonGroup>
             <Button bsSize="xs" bsStyle="success" data-month="1" onClick={this.handleMonthButtonClick}>Jan</Button >
-            <Button bsSize="xs" data-month="2" onClick={this.handleMonthButtonClick}>Feb</Button>
-            <Button bsSize="xs" data-month="3" onClick={this.handleMonthButtonClick}>Mar</Button>
-            <Button bsSize="xs" data-month="4" onClick={this.handleMonthButtonClick}>Apr</Button>
-            <Button bsSize="xs" data-month="5" onClick={this.handleMonthButtonClick}>May</Button>
-            <Button bsSize="xs" data-month="6" onClick={this.handleMonthButtonClick}>Jun</Button>
-            <Button bsSize="xs" data-month="7" onClick={this.handleMonthButtonClick}>Jul</Button>
-            <Button bsSize="xs" data-month="8" onClick={this.handleMonthButtonClick}>Aug</Button>
-            <Button bsSize="xs" data-month="9" onClick={this.handleMonthButtonClick}>Sep</Button>
-            <Button bsSize="xs" data-month="10" onClick={this.handleMonthButtonClick}>Oct</Button>
-            <Button bsSize="xs" data-month="11" onClick={this.handleMonthButtonClick}>Nov</Button>
-            <Button bsSize="xs" data-month="12" onClick={this.handleMonthButtonClick}>Dec</Button>
+            <Button bsSize="xs" data-month="2" onClick={this.handleMonthButtonClick.bind(this)}>Feb</Button>
+            <Button bsSize="xs" data-month="3" onClick={this.handleMonthButtonClick.bind(this)}>Mar</Button>
+            <Button bsSize="xs" data-month="4" onClick={this.handleMonthButtonClick.bind(this)}>Apr</Button>
+            <Button bsSize="xs" data-month="5" onClick={this.handleMonthButtonClick.bind(this)}>May</Button>
+            <Button bsSize="xs" data-month="6" onClick={this.handleMonthButtonClick.bind(this)}>Jun</Button>
+            <Button bsSize="xs" data-month="7" onClick={this.handleMonthButtonClick.bind(this)}>Jul</Button>
+            <Button bsSize="xs" data-month="8" onClick={this.handleMonthButtonClick.bind(this)}>Aug</Button>
+            <Button bsSize="xs" data-month="9" onClick={this.handleMonthButtonClick.bind(this)}>Sep</Button>
+            <Button bsSize="xs" data-month="10" onClick={this.handleMonthButtonClick.bind(this)}>Oct</Button>
+            <Button bsSize="xs" data-month="11" onClick={this.handleMonthButtonClick.bind(this)}>Nov</Button>
+            <Button bsSize="xs" data-month="12" onClick={this.handleMonthButtonClick.bind(this)}>Dec</Button>
           </ButtonGroup>
         </Col>
         <Col md={5}>
           <ButtonGroup>
             <Button bsSize="sm" bsStyle="success" data-quarter="1" onClick={this.handleQuarterButtonClick}>1Q</Button>
-            <Button bsSize="sm" data-quarter="2" onClick={this.handleQuarterButtonClick}>2Q</Button>
-            <Button bsSize="sm" data-quarter="3" onClick={this.handleQuarterButtonClick}>3Q</Button>
-            <Button bsSize="sm" data-quarter="4" onClick={this.handleQuarterButtonClick}>4Q</Button>
+            <Button bsSize="sm" data-quarter="2" onClick={this.handleQuarterButtonClick.bind(this)}>2Q</Button>
+            <Button bsSize="sm" data-quarter="3" onClick={this.handleQuarterButtonClick.bind(this)}>3Q</Button>
+            <Button bsSize="sm" data-quarter="4" onClick={this.handleQuarterButtonClick.bind(this)}>4Q</Button>
           </ButtonGroup>
         </Col>
       </Row>
     )
   }
-  handleQuarterButtonClick(){
-    console.log(`inside quarterly button click`);
+  handleQuarterButtonClick(event){
+    event.preventDefault();
+    let quarter = event.target.dataset.quarter
   }
-  handleMonthButtonClick(){
-    console.log(`inside monthly button click`);
+  handleMonthButtonClick(event){
+    event.preventDefault();
+    let month = event.target.dataset.month
   }
 }
 
