@@ -6,7 +6,7 @@ import { Row, Col, ButtonGroup, Button } from 'react-bootstrap';
 class GroupByMenuSection extends React.Component {
   render () {
     return (
-      <Row className="show-grid">
+      <Row className="show-grid expenses-menu-row">
         <Col md={7}>
           <ButtonGroup>
             <Button bsSize="xs" bsStyle="success" data-month="1" onClick={this.handleMonthButtonClick}>Jan</Button >
@@ -25,7 +25,7 @@ class GroupByMenuSection extends React.Component {
         </Col>
         <Col md={5}>
           <ButtonGroup>
-            <Button bsSize="sm" bsStyle="success" data-quarter="1" onClick={this.handleQuarterButtonClick}>1Q</Button>
+            <Button bsSize="sm" bsStyle="success" data-quarter="1" onClick={this.handleQuarterButtonClick.bind(this)}>1Q</Button>
             <Button bsSize="sm" data-quarter="2" onClick={this.handleQuarterButtonClick.bind(this)}>2Q</Button>
             <Button bsSize="sm" data-quarter="3" onClick={this.handleQuarterButtonClick.bind(this)}>3Q</Button>
             <Button bsSize="sm" data-quarter="4" onClick={this.handleQuarterButtonClick.bind(this)}>4Q</Button>
@@ -37,10 +37,12 @@ class GroupByMenuSection extends React.Component {
   handleQuarterButtonClick(event){
     event.preventDefault();
     let quarter = event.target.dataset.quarter
+    console.log(`quarter is ${quarter}`);
   }
   handleMonthButtonClick(event){
     event.preventDefault();
     let month = event.target.dataset.month
+    console.log(`month is ${month}`);
   }
 }
 
