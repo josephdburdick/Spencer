@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 
 import { Row, Col, ButtonGroup, Button } from 'react-bootstrap';
+import Meteor from 'meteor/meteor';
 
 
 class GroupByMenuSection extends React.Component {
@@ -38,11 +39,19 @@ class GroupByMenuSection extends React.Component {
     event.preventDefault();
     let quarter = event.target.dataset.quarter
     console.log(`quarter is ${quarter}`);
+    Meteor.call('groupByQuarter', quarter, (error,response)=>{
+
+    })
+
   }
   handleMonthButtonClick(event){
     event.preventDefault();
     let month = event.target.dataset.month
     console.log(`month is ${month}`);
+    Meteor.call('groupByMonth', month, (error,response)=>{
+
+    })
+
   }
 }
 
