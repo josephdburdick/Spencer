@@ -5,13 +5,16 @@ import { ValidatedMethod } from 'meteor/mdg:validated-method';
 export const insertExpense = new ValidatedMethod({
   name: 'expenses.insert',
   validate: new SimpleSchema({
-    userId      : { type: String },
-    price       : { type : Number, decimal: true },
-    description : { type : String },
-    category    : { type : String },
-    business    : { type : String }
+    userId                : { type : String },
+    price                 : { type : Number, decimal: true },
+    description           : { type : String },
+    "category.$.value"    : { type : String }, //the $ indicates presence of an array i.e. react select format is [{value:"someValue", label:"someLabel"}]
+    "category.$.label"    : { type : String },
+    "business.value"      : { type : String }, //business is an object, not array with format value:"someValue", label:"someLabel"}
+    "business.label"      : { type : String }
   }).validator(),
     run(expense) {
+      expense['dateCreated'] = new Date();
       Expenses.insert(expense);
     }
 });

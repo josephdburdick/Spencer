@@ -39,7 +39,7 @@ class AddExpense extends Component {
   handleInsertExpense (event) {
     event.preventDefault();
     this.setState({isProcessing: true});
-
+    console.log(`business being inserted is ${JSON.stringify(this.state.business)}`)
     insertExpense.call({
       userId: Meteor.userId(),
       price: this.state.price,
@@ -66,12 +66,13 @@ class AddExpense extends Component {
     this.setState({description: event.target.value});
   }
 
-  handleCategoryChange (event) {
-    this.setState({category: event.value});
+  handleCategoryChange (value) {
+    this.setState({category: value});
+    console.log(`full category state is ${JSON.stringify(this.state.category)}`)
   }
 
-  handleBusinessChange (event) {
-    this.setState({business: event.value});
+  handleBusinessChange (value) {
+    this.setState({business: value});
   }
 
   render() {

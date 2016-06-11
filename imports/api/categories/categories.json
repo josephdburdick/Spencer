@@ -1,137 +1,103 @@
 [{
-  "userId" : "admin",
   "value"  : "Auto & Transport",
   "label"  : "Auto & Transport"
 }, {
-  "userId" : "admin",
   "value": "Auto Insurance",
   "label": "Auto Insurance"
 }, {
-  "userId" : "admin",
   "value": "Auto Payment",
   "label": "Auto Payment"
 }, {
-  "userId" : "admin",
   "value": "Gas & Fuel",
   "label": "Gas & Fuel"
 }, {
-  "userId" : "admin",
   "value": "Parking",
   "label": "Parking"
 }, {
-  "userId" : "admin",
   "value": "Public Transportation",
   "label": "Public Transportation"
 }, {
-  "userId" : "admin",
   "value": "Service & Parts",
   "label": "Service & Parts"
 }, {
-  "userId" : "admin",
   "value": "Bills & Utilities",
   "label": "Bills & Utilities"
 }, {
-  "userId" : "admin",
   "value": "Home Phone",
   "label": "Home Phone"
 }, {
-  "userId" : "admin",
   "value": "Internet",
   "label": "Internet"
 }, {
-  "userId" : "admin",
   "value": "Mobile Phone",
   "label": "Mobile Phone"
 }, {
-  "userId" : "admin",
   "value": "Television",
   "label": "Television"
 }, {
-  "userId" : "admin",
   "value": "Utilities",
   "label": "Utilities"
 }, {
-  "userId" : "admin",
   "value": "Business Services",
   "label": "Business Services"
 }, {
-  "userId" : "admin",
   "value": "Advertising",
   "label": "Advertising"
 }, {
-  "userId" : "admin",
   "value": "Legal",
   "label": "Legal"
 }, {
-  "userId" : "admin",
   "value": "Office Supplies",
   "label": "Office Supplies"
 }, {
-  "userId" : "admin",
   "value": "Printing",
   "label": "Printing"
 }, {
-  "userId" : "admin",
   "value": "Shipping",
   "label": "Shipping"
 }, {
-  "userId" : "admin",
   "value": "Education",
   "label": "Education"
 }, {
-  "userId" : "admin",
   "value": "Books & Supplies",
   "label": "Books & Supplies"
 }, {
-  "userId" : "admin",
   "value": "Student Loan",
   "label": "Student Loan"
 }, {
-  "userId" : "admin",
   "value": "Tuition",
   "label": "Tuition"
 }, {
-  "userId" : "admin",
   "value": "Entertainment",
   "label": "Entertainment"
 }, {
-  "userId" : "admin",
   "value": "Amusement",
   "label": "Amusement"
 }, {
-  "userId" : "admin",
   "value": "Arts",
   "label": "Arts"
 }, {
-  "userId" : "admin",
   "value": "Movies & DVDs",
   "label": "Movies & DVDs"
 }, {
-  "userId" : "admin",
   "value": "Music",
   "label": "Music"
 }, {
-  "userId" : "admin",
   "value": "Newspapers & Magazines",
   "label": "Newspapers & Magazines"
 }, {
-  "userId" : "admin",
   "value": "Fees & Charges",
   "label": "Fees & Charges"
 }, {
-  "userId" : "admin",
   "value": "ATM Fee",
   "label": "ATM Fee"
 }, {
-  "userId" : "admin",
   "value": "Bank Fee",
   "label": "Bank Fee"
 }, {
-  "userId" : "admin",
   "value": "Finance Charge",
   "label": "Finance Charge"
 }, {
-  "userId" : "admin",
   "value": "Late Fee",
   "label": "Late Fee"
 }, {
