@@ -9,3 +9,15 @@ Expenses.aggregate([
         "distinctDate": { "$addToSet": { "year": "$year"}}
     }}
 ]
+//search for a specific month & year - pass month and year into the function.
+
+Expenses.aggregate(
+ { "$project": {
+      "year":{"$year":"$createdAt"},
+      "month":{"$month":"$createdAt"},
+ },
+ { "$match":{
+      "year" :2015,
+      "month": 3
+   }
+ })
