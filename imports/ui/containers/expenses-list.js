@@ -4,7 +4,7 @@ import { ExpensesList } from '../components/expenses-list.js';
 import { Loading } from '../components/loading.js';
 import { Meteor } from 'meteor/meteor';
 
-const composer = (params, onData) => {
+const composer = (props, onData) => {
   const subscription = Meteor.subscribe('expenses');
   if (subscription.ready()) {
     const expenses = Expenses.find().fetch();
