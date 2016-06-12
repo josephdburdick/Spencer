@@ -4,6 +4,10 @@ import Expenses from './expenses.js'
 import { Meteor } from 'meteor/meteor';
 
 Meteor.methods({
+  /*expensesAggregate : function(pipeline) {
+    const expenses = Expenses.aggregate(pipeline).fetch();
+    return expenses;
+  },*/
   sortByPrice : function(sortType){
     console.log(`inside sort by price and sort type is ${sortType}`)
     return true;

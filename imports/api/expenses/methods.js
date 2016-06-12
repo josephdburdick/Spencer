@@ -41,3 +41,15 @@ export const removeExpense = new ValidatedMethod({
     Expenses.remove(_id);
   },
 });
+
+export const expensesAggregate = new ValidatedMethod({
+  name: "expenses.aggregate",
+  /*validate: new SimpleSchema({
+    pipeline: { type: [Object] },
+  }).validator(),*/
+  validate: null,
+  run({ pipeline }) {
+    const expenses = Expenses.aggregate(pipeline).fetch();
+    return expenses;
+  },
+});

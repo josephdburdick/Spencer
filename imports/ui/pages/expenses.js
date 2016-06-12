@@ -7,6 +7,12 @@ import ExpensesMenu from '../components/expenses-menu/expenses-menu.js'
 export class Expenses extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      year: null,
+      quarter: null,
+      month: null,
+      sort: null
+    };
     this.onYearClick = this.onYearClick.bind(this);
     this.onQuarterClick = this.onQuarterClick.bind(this);
     this.onMonthClick = this.onMonthClick.bind(this);
@@ -14,11 +20,13 @@ export class Expenses extends React.Component {
   }
   onYearClick(event) {
     const year = event.target.dataset.year;
+    this.setState({ year: year });
     console.log(`Expenses.onYearClick: year => ${year}`);
   }
   onQuarterClick(event) {
     event.preventDefault();
     const quarter = event.target.dataset.quarter;
+    this.setState({ quarter: quarter });
     console.log(`Expenses.onQuarterClick: quarter => ${quarter}`);
     /*Meteor.call('groupByQuarter', quarter, (error,response)=>{
   
@@ -27,6 +35,7 @@ export class Expenses extends React.Component {
   onMonthClick(event) {
     event.preventDefault();
     const month = event.target.dataset.month;
+    this.setState({ month: month });
     console.log(`Expenses.onMonthClick: month => ${month}`);
     /*Meteor.call('groupByMonth', month, (error,response)=>{
   
@@ -34,7 +43,9 @@ export class Expenses extends React.Component {
   }
   onSortClick(event) {
     event.preventDefault()
-    console.log(`Expenses.onSortClick: sort => ${event.target.dataset.sort}`);
+    const sort = event.target.dataset.sort;
+    this.setState({ sort: sort });
+    console.log(`Expenses.onSortClick: sort => ${sort}`);
     /*switch(event.target.dataset.sort) {
       case "price":
         let sortType = -1 //hardcoded for now but should come from state or props - must discover which
@@ -84,7 +95,11 @@ export class Expenses extends React.Component {
             onQuarterClick={this.onQuarterClick}
             onMonthClick={this.onMonthClick}
             onSortClick={this.onSortClick} />
-          <ExpensesList />
+          <ExpensesList
+            year={this.state.year}
+            quarter={this.state.quarter}
+            month={this.state.month}
+            sort={this.state.sort} />
           <AddExpense />
         </Col>
       </Row>
