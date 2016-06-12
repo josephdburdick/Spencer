@@ -1,5 +1,8 @@
 //we need to return the unique years for year button group
 //import Expenses from '../api'
+import Expenses from './expenses.js'
+import { Meteor } from 'meteor/meteor';
+
 Meteor.methods({
   sortByPrice : function(sortType){
     console.log(`inside sort by price and sort type is ${sortType}`)

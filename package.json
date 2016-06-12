@@ -11,6 +11,7 @@
     "production": "meteor deploy production.meteor.com --settings settings-production.json"
   },
   "devDependencies": {
+    "babel-plugin-add-module-exports": "^0.2.1",
     "chimp": "^0.33.1",
     "eslint": "^2.8.0",
     "eslint-config-airbnb": "^7.0.0",

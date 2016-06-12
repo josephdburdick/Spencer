@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import Meteor from 'meteor/meteor';
+import { Meteor } from 'meteor/meteor';
 import { Row, Col, ButtonGroup, Button } from 'react-bootstrap';
 
 class SortByMenuSection extends React.Component {

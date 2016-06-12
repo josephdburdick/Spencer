@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 
 import { Row, Col, ButtonGroup, Button } from 'react-bootstrap';
-import Meteor from 'meteor/meteor';
+import { Meteor } from 'meteor/meteor';
 
 
 class GroupByMenuSection extends React.Component {
