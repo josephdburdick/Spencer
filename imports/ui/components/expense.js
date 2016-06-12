@@ -84,7 +84,9 @@ export class Expense extends Component {
   }
   handleCategoryChange (event) {
     console.log(event);
+    console.log(`category change value is ${event.value}`)
     this.setState({category: event.value});
+    console.log(`state for category after merging state is ${JSON.stringify(this.state.category)}`)
   }
   handleBusinessChange (event) {
     this.setState({business: event.value});
@@ -189,7 +191,7 @@ export class Expense extends Component {
                   { formControlOrLabel(
                     <CategorySelect
                       ref="category"
-                      onChange={ this.handleCategoryChange }
+                      onChange={ this.handleCategoryChange.bind(this) }
                       value={this.state.category}
                       disabled={ this.state.disabled } />
                   ) }

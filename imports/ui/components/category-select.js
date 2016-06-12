@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Select from 'react-select';
 import _ from 'lodash';
-
 import categoriesArray from '../../api/categories/categories.json';
 
 export default class CategorySelect extends Component {
@@ -47,6 +46,6 @@ export default class CategorySelect extends Component {
 CategorySelect.defaultProps = {
   placeholder: "Add category",
   selected: '',
-  name: "category-select",
-  multi: true
+  name  : "category-select",
+  multi : true 
 };
