@@ -95,20 +95,17 @@ export class Expense extends Component {
     this.setState({ disabled: !this.state.disabled });
   }
 
-
   render() {
     const expense = this.props;
     const toggleEditorUpdateButton = (
-      this.state.disabled
-        ? (
-          <Button
-            bsStyle="default"
-            className="btn-block"
-            onClick={ this.handleToggleEditMode.bind(this, this.state._id) }>
-            Edit
-          </Button>
-        )
-        : (
+      this.state.disabled ? (
+        <Button
+          bsStyle="default"
+          className="btn-block"
+          onClick={ this.handleToggleEditMode.bind(this, this.state._id) }>
+          Edit
+        </Button>
+      ) : (
         <FormGroup>
           <div>
             <Button
@@ -127,36 +124,31 @@ export class Expense extends Component {
             </Button>
           </div>
         </FormGroup>
-        )
+      )
     );
     const toggleDeleteButton = (
-      !this.state.disabled
-        ? (
-          <Button
-            bsStyle="danger"
-            className="btn-block"
-            onClick={ this.handleRemoveExpense.bind(this, this.state._id) }>
-            Remove
-          </Button>
-        ) : null
+      !this.state.disabled ? (
+        <Button
+          bsStyle="danger"
+          className="btn-block"
+          onClick={ this.handleRemoveExpense.bind(this, this.state._id) }>
+          Remove
+        </Button>
+      ) : null
     );
-
     const formControlOrLabel = control => (
-      this.state.disabled ?
-        (
-          <div>{control.props.defaultValue || control.props.value}</div>
-        ) : control
+      this.state.disabled ? (
+        <div>{control.props.defaultValue || control.props.value}</div>
+      ) : control
     )
-
     return (
       <ListGroupItem key={ this.state._id } ref="item" data-expense-id={ this.state._id }>
         <Row className="row--half-gutter">
           <Col xs={ 8 } sm={ 10 }>
             <Row className="row--half-gutter">
               <Col xs={12} sm={9}>
-
                 <FormGroup>
-                  { formControlOrLabel(
+                  { formControlOrLabel (
                     <FormControl
                       type="text"
                       ref="description"
@@ -166,21 +158,20 @@ export class Expense extends Component {
                       disabled={ this.state.disabled } />
                   ) }
                 </FormGroup>
-
               </Col>
               <Col xs={12} sm={3}>
                 <FormGroup>
                   <InputGroup>
                     <InputGroup.Addon>$</InputGroup.Addon>
-                    { formControlOrLabel(
+                    { formControlOrLabel (
                       <FormControl
-                      type="number"
-                      min="0"
-                      ref="price"
-                      onChange={this.handlePriceChange}
-                      defaultValue={this.state.price}
-                      placeholder="Price" disabled={ this.state.disabled } />
-                  ) }
+                        type="number"
+                        min="0"
+                        ref="price"
+                        onChange={this.handlePriceChange}
+                        defaultValue={this.state.price}
+                        placeholder="Price" disabled={ this.state.disabled } />
+                    ) }
                   </InputGroup>
                 </FormGroup>
               </Col>
@@ -188,7 +179,7 @@ export class Expense extends Component {
             <Row className="row--half-gutter">
               <Col xs={12} sm={6}>
                 <FormGroup>
-                  { formControlOrLabel(
+                  { formControlOrLabel (
                     <CategorySelect
                       ref="category"
                       onChange={ this.handleCategoryChange.bind(this) }
@@ -199,12 +190,13 @@ export class Expense extends Component {
               </Col>
               <Col xs={12} sm={6}>
                 <FormGroup>
-                  { formControlOrLabel(<BusinessSelect
-                    ref="business"
-                    onChange={ this.handleBusinessChange }
-                    value={this.state.business}
-                    disabled={ this.state.disabled } />
-                ) }
+                  { formControlOrLabel (
+                    <BusinessSelect
+                      ref="business"
+                      onChange={ this.handleBusinessChange }
+                      value={this.state.business}
+                      disabled={ this.state.disabled } />
+                  ) }
                 </FormGroup>
               </Col>
             </Row>
