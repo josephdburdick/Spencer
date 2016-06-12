@@ -4,8 +4,8 @@ import { Row, Col, ButtonGroup, Button } from 'react-bootstrap';
 class YearButtonGroup extends React.Component {
   render () {
     return (
-      <Row className="show-grid">
-        <Col xs={6} xsOffset={3}>
+      <Row className="show-grid expenses-menu-row">
+        <Col xs={6}>
           <ButtonGroup>
             <Button bsSize="sm" bsStyle="success" onClick={this.handleYearButtonClick}>2014</Button >
             <Button bsSize="sm" onClick={this.handleYearButtonClick}>2015</Button>

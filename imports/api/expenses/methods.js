@@ -23,10 +23,12 @@ export const updateExpense = new ValidatedMethod({
   name: 'expenses.update',
   validate: new SimpleSchema({
     _id: { type: String },
-    'update.price'       : { type : Number, decimal: true },
-    'update.description' : { type : String },
-    'update.category'    : { type : String },
-    'update.business'    : { type : String }
+    "update.price"               : { type : Number, decimal: true },
+    "update.description"         : { type : String },
+    "update.category.$.value"    : { type : String },
+    "update.category.$.label"    : { type : String },
+    "update.business.value"      : { type : String }, //business is an object, not array with format value:"someValue", label:"someLabel"}
+    "update.business.label"      : { type : String }
   }).validator(),
   run({ _id, update }) {
     console.log(update);
@@ -35,7 +37,7 @@ export const updateExpense = new ValidatedMethod({
 });
 
 export const removeExpense = new ValidatedMethod({
-  name: 'expenses.remove',
+  name: "expenses.remove",
   validate: new SimpleSchema({
     _id: { type: String },
   }).validator(),

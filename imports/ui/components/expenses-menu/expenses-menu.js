@@ -17,7 +17,6 @@ import YearButtonGroup from './year-button-group.js'
 const ExpensesMenu = () => {
   return (
     <div className="expenses-menu">
-      <h1>Inside Expenses Menu</h1>
       <YearButtonGroup />
       <GroupByMenuSection />
       <SortByMenuSection />
