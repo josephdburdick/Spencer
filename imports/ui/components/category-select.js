@@ -7,24 +7,11 @@ export default class CategorySelect extends Component {
   constructor(props){
     super(props);
     this.state = {
-      categories: categoriesArray,
-      selected: this.props.selected,
-      value: this.props.value,
-      disabled: this.props.disabled
+      categories: categoriesArray
     }
-    // this.handleCategoryChange = this.handleCategoryChange.bind(this);
   }
 
-  // handleCategoryChange(categories, currentState = this.state) {
-  //   currentState.selected = categories;
-  //   return currentState;
-  // }
-
   render() {
-    // const handleCategoryChange = (categories, currentState = this.state) => {
-    //   currentState.selected = categories;
-    //   return currentState;
-    // }
     const options = this.state.categories;
     return (
       <div>
@@ -36,6 +23,7 @@ export default class CategorySelect extends Component {
           value={this.props.value}
           multi={this.props.multi}
           disabled={this.props.disabled}
+          simpleValue={true}
           allowCreate={true}
         />
       </div>
@@ -47,5 +35,6 @@ CategorySelect.defaultProps = {
   placeholder: "Add category",
   selected: '',
   name  : "category-select",
+  disabled  : false,
   multi : true 
 };

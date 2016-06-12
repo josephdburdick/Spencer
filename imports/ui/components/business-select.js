@@ -5,7 +5,7 @@ import _ from 'lodash';
 import { Businesses } from '../../api/businesses/businesses.js';
 
 export default class BusinessSelect extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       businesses: [
@@ -16,10 +16,7 @@ export default class BusinessSelect extends Component {
           "value": "AirBnB",
           "label": "AirBnB"
         }
-      ],
-      category: '',
-      value: this.props.value,
-      disabled: this.props.disabled
+      ]
     }
   }
 
@@ -28,13 +25,15 @@ export default class BusinessSelect extends Component {
     return (
       <div>
         <Select
-          placeholder="Business Name..."
-          name="business-select"
+          placeholder={this.props.placeholder}
+          name={this.props.name}
           options={options}
           onChange={this.props.onChange}
           value={this.props.value}
-          allowCreate={true}
+          multi={this.props.multi}
           disabled={this.props.disabled}
+          simpleValue={true}
+          allowCreate={true}
         />
       </div>
     )
@@ -42,5 +41,9 @@ export default class BusinessSelect extends Component {
 }
 
 BusinessSelect.defaultProps = {
-  placeholder: "Add category"
+  placeholder: "Add business",
+  selected: '',
+  name  : "business-select",
+  disabled  : false,
+  multi : false 
 };

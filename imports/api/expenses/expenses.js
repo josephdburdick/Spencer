@@ -23,8 +23,12 @@ Expenses.schema = new SimpleSchema({
     label: 'Name of the associated business'
   },
   category: {
-    type: String,
-    label: 'Category of expense'
+    type: [String],
+    label: 'Categories of expense'
+  },
+  dateCreated: {
+    type: Date,
+    label: 'Date created'
   }
 });
 
@@ -34,6 +38,6 @@ Factory.define('expense', Expenses, {
   description: () => faker.lorem.words(),
   userId: () => faker.random.uuid(),
   price: () => faker.random.number(),
-  business: () => faker.company.companyName(),
+  // business: () => faker.company.companyName(),
   category: () => faker.lorem.word()
 });

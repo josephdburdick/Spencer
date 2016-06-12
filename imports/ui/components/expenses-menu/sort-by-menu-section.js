@@ -5,7 +5,8 @@ import { Row, Col, ButtonGroup, Button } from 'react-bootstrap';
 class SortByMenuSection extends React.Component {
   handleSortButtonClick(event){
     event.preventDefault()
-    switch(event.target.dataset.sort) {
+    console.log(`SortByMenuSection.handleSortButtonClick: sort => ${event.target.dataset.sort}`);
+    /*switch(event.target.dataset.sort) {
       case "price":
         let sortType = -1 //hardcoded for now but should come from state or props - must discover which
         Meteor.call('sortByPrice', sortType, (error,response)=>{
@@ -42,7 +43,7 @@ class SortByMenuSection extends React.Component {
           }
         });
       break;
-    }
+    }*/
   }
   render () {
     return (
