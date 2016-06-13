@@ -1,6 +1,7 @@
 import { Expenses } from './expenses';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
+import Meteor from 'meteor/meteor';
 
 export const insertExpense = new ValidatedMethod({
   name: 'expenses.insert',
@@ -44,12 +45,11 @@ export const removeExpense = new ValidatedMethod({
 
 export const expensesAggregate = new ValidatedMethod({
   name: "expenses.aggregate",
-  /*validate: new SimpleSchema({
-    pipeline: { type: [Object] },
-  }).validator(),*/
   validate: null,
   run({ pipeline }) {
-    const expenses = Expenses.aggregate(pipeline).fetch();
-    return expenses;
+    if (!this.isSimulation) {
+      const expenses = Expenses.aggregate(pipeline);
+      return expenses;
+    }
   },
 });

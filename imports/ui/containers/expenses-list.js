@@ -29,22 +29,15 @@ const composer = (props, onData) => {
        pipeline.push(sort_spec);
     }
     if (pipeline.length > 0) {
-      // expenses = Expenses.aggregate(pipeline).fetch();
-      /*Meteor.call('expensesAggregate', pipeline, (err, res) => {
-        if (err) {
-          console.log(`composer: err => ${err}`);
-        } else {
-          onData(null, { res });
-        }
-      });*/
-    expensesAggregate.call({ pipeline }, (err, res) => {
+      expensesAggregate.call({ pipeline }, (err, res) => {
         if (err) {
           console.log(`composer: err => ${err}`);
           Bert.alert(err.reason, 'danger');
         } else {
-          onData(null, { res });
+          expenses = res;
+          onData(null, { expenses });
         }
-    });
+      });
     } else {
       expenses = Expenses.find().fetch();
       onData(null, { expenses });
