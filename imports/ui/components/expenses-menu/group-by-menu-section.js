@@ -40,7 +40,7 @@ class GroupByMenuSection extends React.Component {
     let quarter = event.target.dataset.quarter
     console.log(`quarter is ${quarter}`);
     Meteor.call('groupByQuarter', quarter, (error,response)=>{
-
+      
     })
 
   }
@@ -51,7 +51,6 @@ class GroupByMenuSection extends React.Component {
     Meteor.call('groupByMonth', month, (error,response)=>{
 
     })
-
   }
 }
 

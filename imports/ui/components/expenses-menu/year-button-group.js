@@ -7,7 +7,7 @@ class YearButtonGroup extends React.Component {
       <Row className="show-grid expenses-menu-row">
         <Col xs={6}>
           <ButtonGroup>
-            <Button bsSize="sm" data-year="2014" bsStyle="success" onClick={this.handleYearButtonClick.bind(this)}>2014</Button >
+            <Button bsSize="sm" data-year="2014" bsStyle="success" onClick={this.handleYearButtonClick.bind(this)}>2014</Button>
             <Button bsSize="sm" data-year="2015" onClick={this.handleYearButtonClick.bind(this)}>2015</Button>
             <Button bsSize="sm" data-year="2016" onClick={this.handleYearButtonClick.bind(this)}>2016</Button>
           </ButtonGroup>
