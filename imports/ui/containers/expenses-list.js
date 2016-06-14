@@ -29,11 +29,17 @@ const composer = (props, onData) => {
     };
     pipeline.push(project_stage);
     if (props.year || props.quarter || props.month) {
+      const and_arguments = [];
       if (props.year) {
-        match_stage = { $match : { year : Number.parseInt(props.year) } };
-        pipeline.push(match_stage);
+        const year_filter = { year : Number.parseInt(props.year) };
+        and_arguments.push(year_filter);
       }
-      // pipeline.push(match_stage);
+      if (props.month) {
+        const month_filter = { month : Number.parseInt(props.month) };
+        and_arguments.push(month_filter);
+      }
+      match_stage = { $match : { $and: and_arguments } };
+      pipeline.push(match_stage);
     }
     if (props.sort) {
       switch(props.sort) {
