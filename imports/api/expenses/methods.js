@@ -47,6 +47,7 @@ export const expensesAggregate = new ValidatedMethod({
   name: "expenses.aggregate",
   validate: null,
   run({ pipeline }) {
+    // just a comment so i can push
     if (!this.isSimulation) {
       const expenses = Expenses.aggregate(pipeline);
       return expenses;
