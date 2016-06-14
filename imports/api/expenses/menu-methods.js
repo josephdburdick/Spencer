@@ -51,7 +51,7 @@ Meteor.methods({
   },
   groupByQuarter : function(quarter){
     console.log(`inside groupByQuarter and quarter is ${quarter}`)
-    //Q1 = Jan, Feb, March, April  =  months  1,2,3
+    //Q1 = Jan, Feb, March         =  months  1,2,3
     //Q2 = April, May, June,       =  months  4, 5,6,
     //Q3 = July, August, September = months 7,8,9
     //Q4 = Oct, Nov, Dec           = months 10,11,12
