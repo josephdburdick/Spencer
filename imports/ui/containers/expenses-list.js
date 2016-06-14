@@ -11,37 +11,53 @@ const composer = (props, onData) => {
     console.log(`composer: year => ${props.year}, quarter => ${props.quarter}, month => ${props.month}, sort => ${props.sort}`);
     let expenses = [];
     let pipeline = [];
-    let sort_spec = null;
+    let project_stage = null;
+    let match_stage = null;
+    let sort_stage = null;
+    project_stage = {
+      $project: {
+        userId: 1,
+        price: 1,
+        description: 1,
+        business: 1,
+        category: 1,
+        dateCreated: 1,
+        year: { $year: "$dateCreated" },
+        month: { $month: "$dateCreated" },
+        day: { $dayOfMonth: "$dateCreated" }
+      }
+    };
+    pipeline.push(project_stage);
+    if (props.year || props.quarter || props.month) {
+      if (props.year) {
+        match_stage = { $match : { year : Number.parseInt(props.year) } };
+        pipeline.push(match_stage);
+      }
+      // pipeline.push(match_stage);
+    }
     if (props.sort) {
       switch(props.sort) {
          case "category":
-           sort_spec = { $sort : { category : 1 } };
+           sort_stage = { $sort : { category : 1 } };
            break;
          case "price":
-           sort_spec = { $sort : { price : 1 } };
+           sort_stage = { $sort : { price : 1 } };
            break;
          case "date":
-           sort_spec = { $sort : { dateCreated : 1 } };
+           sort_stage = { $sort : { dateCreated : 1 } };
            break;
       }
+      pipeline.push(sort_stage);
     }
-    if (sort_spec) {
-       pipeline.push(sort_spec);
-    }
-    if (pipeline.length > 0) {
-      expensesAggregate.call({ pipeline }, (err, res) => {
-        if (err) {
-          console.log(`composer: err => ${err}`);
-          Bert.alert(err.reason, 'danger');
-        } else {
-          expenses = res;
-          onData(null, { expenses });
-        }
-      });
-    } else {
-      expenses = Expenses.find().fetch();
-      onData(null, { expenses });
-    }
+    expensesAggregate.call({ pipeline }, (error, result) => {
+      if (error) {
+        console.log(`composer: error => ${error}`);
+        Bert.alert(error.reason, 'danger');
+      } else {
+        expenses = result;
+        onData(null, { expenses });
+      }
+    });
   }
 };
 
