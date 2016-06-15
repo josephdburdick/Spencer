@@ -14,6 +14,7 @@ const composer = (props, onData) => {
     let project_stage = null;
     let match_stage = null;
     let sort_stage = null;
+    let group_stage = null;
     project_stage = {
       $project: {
         userId: 1,
@@ -69,18 +70,23 @@ const composer = (props, onData) => {
       pipeline.push(match_stage);
     }
     if (props.sort) {
-      switch(props.sort) {
-         case "category":
-           sort_stage = { $sort : { category : 1 } };
-           break;
-         case "price":
-           sort_stage = { $sort : { price : 1 } };
-           break;
-         case "date":
-           sort_stage = { $sort : { dateCreated : 1 } };
-           break;
+      if (props.sort.localeCompare('category') == 0) {
+        group_stage = { $group : { _id : "$category", expenses: { $push: "$$ROOT" } } };
+        pipeline.push(group_stage);
+      } else {
+        switch(props.sort) {
+           /*case "category":
+             sort_stage = { $sort : { category : 1 } };
+             break;*/
+           case "price":
+             sort_stage = { $sort : { price : 1 } };
+             break;
+           case "date":
+             sort_stage = { $sort : { dateCreated : 1 } };
+             break;
+        }
+        pipeline.push(sort_stage);
       }
-      pipeline.push(sort_stage);
     }
     expensesAggregate.call({ pipeline }, (error, result) => {
       if (error) {
@@ -88,6 +94,14 @@ const composer = (props, onData) => {
         Bert.alert(error.reason, 'danger');
       } else {
         expenses = result;
+        expenses.forEach((element, index, array) => {
+          console.log(`expensesAggregate.expenses: expenses[${index}]._id => ${element._id}, expenses[${index}].userId => ${element.userId}, expenses[${index}].description => ${element.description}, expenses[${index}].price => ${element.price}, expenses[${index}].category => ${element.category}, expenses[${index}].business => ${element.business}, expenses[${index}].expenses => ${element.expenses}`);
+          if (element.expenses) {
+            element.expenses.forEach((elem, i, arr) => {
+              console.log(`expensesAggregate.expenses.expenses: expenses[${i}]._id => ${elem._id}, expenses[${i}].userId => ${elem.userId}, expenses[${i}].description => ${elem.description}, expenses[${i}].price => ${elem.price}, expenses[${i}].category => ${elem.category}, expenses[${i}].business => ${elem.business}`);
+            });
+          }
+        });
         onData(null, { expenses });
       }
     });
