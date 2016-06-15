@@ -9,12 +9,15 @@ const composer = (props, onData) => {
   let pipeline = [];
   let project_stage = null;
   let group_stage = null;
-    project_stage = {
+  let sort_stage = null;
+  project_stage = {
     $project: {
       year: { $year: "$dateCreated" }
     }
   };
   pipeline.push(project_stage);
+  sort_stage = { $sort : { year : -1 } };
+  pipeline.push(sort_stage);
   group_stage = { $group : { _id : "$year" } };
   pipeline.push(group_stage);
   expensesAggregate.call({ pipeline }, (error, result) => {
