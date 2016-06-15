@@ -161,9 +161,11 @@ export class Expense extends Component {
               </Col>
               <Col xs={12} sm={3}>
                 <FormGroup>
-                  <InputGroup>
-                    <InputGroup.Addon>$</InputGroup.Addon>
-                    { formControlOrLabel (
+                  { this.state.disabled ? (
+                    <div>${this.state.price}</div>
+                  ) : (
+                    <InputGroup>
+                      <InputGroup.Addon>$</InputGroup.Addon>
                       <FormControl
                         type="number"
                         min="0"
@@ -171,8 +173,8 @@ export class Expense extends Component {
                         onChange={this.handlePriceChange}
                         defaultValue={this.state.price}
                         placeholder="Price" disabled={ this.state.disabled } />
-                    ) }
-                  </InputGroup>
+                    </InputGroup>
+                  ) }
                 </FormGroup>
               </Col>
             </Row>
