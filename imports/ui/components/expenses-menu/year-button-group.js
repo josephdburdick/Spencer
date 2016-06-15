@@ -7,9 +7,9 @@ export default class YearButtonGroup extends React.Component {
       <Row className="show-grid expenses-menu-row">
         <Col xs={6}>
           <ButtonGroup>
-            <Button bsSize="sm" data-year="2014" bsStyle="success" onClick={this.props.onYearClick}>2014</Button >
-            <Button bsSize="sm" data-year="2015" onClick={this.props.onYearClick}>2015</Button>
-            <Button bsSize="sm" data-year="2016" onClick={this.props.onYearClick}>2016</Button>
+            {this.props.years.map((year, index, array) => {
+              return (<Button key={index} bsSize="sm" data-year={year._id} onClick={this.props.onYearClick}>{year._id}</Button>)
+            })}
           </ButtonGroup>
         </Col>
       </Row>

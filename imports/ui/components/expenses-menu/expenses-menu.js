@@ -2,7 +2,8 @@ import React from 'react';
 import { FormGroup, FormControl } from 'react-bootstrap';
 import GroupByMenuSection from './group-by-menu-section.js';
 import SortByMenuSection from './sort-by-menu-section.js';
-import YearButtonGroup from './year-button-group.js'
+// import YearButtonGroup from './year-button-group.js'
+import YearButtonGroup from '../../containers/year-button-group-container.js'
 
 export default class ExpensesMenu extends React.Component {
   constructor(props) {

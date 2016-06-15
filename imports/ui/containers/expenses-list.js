@@ -75,9 +75,6 @@ const composer = (props, onData) => {
         pipeline.push(group_stage);
       } else {
         switch(props.sort) {
-           /*case "category":
-             sort_stage = { $sort : { category : 1 } };
-             break;*/
            case "price":
              sort_stage = { $sort : { price : 1 } };
              break;
@@ -94,14 +91,6 @@ const composer = (props, onData) => {
         Bert.alert(error.reason, 'danger');
       } else {
         expenses = result;
-        expenses.forEach((element, index, array) => {
-          console.log(`expensesAggregate.expenses: expenses[${index}]._id => ${element._id}, expenses[${index}].userId => ${element.userId}, expenses[${index}].description => ${element.description}, expenses[${index}].price => ${element.price}, expenses[${index}].category => ${element.category}, expenses[${index}].business => ${element.business}, expenses[${index}].expenses => ${element.expenses}`);
-          if (element.expenses) {
-            element.expenses.forEach((elem, i, arr) => {
-              console.log(`expensesAggregate.expenses.expenses: expenses[${i}]._id => ${elem._id}, expenses[${i}].userId => ${elem.userId}, expenses[${i}].description => ${elem.description}, expenses[${i}].price => ${elem.price}, expenses[${i}].category => ${elem.category}, expenses[${i}].business => ${elem.business}`);
-            });
-          }
-        });
         onData(null, { expenses });
       }
     });
