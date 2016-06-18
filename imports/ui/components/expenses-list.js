@@ -1,5 +1,5 @@
 import React from 'react';
-import { ListGroup, Alert, PageHeader } from 'react-bootstrap';
+import { ListGroup, ListGroupItem, Alert, PageHeader } from 'react-bootstrap';
 import { Expense } from './expense.js';
 
 export const ExpensesList = ({ expenses }) => (
@@ -12,7 +12,7 @@ export const ExpensesList = ({ expenses }) => (
           })
           return (
             <div>
-              <PageHeader>{doc._id}</PageHeader>
+              <PageHeader key={doc._id}>{doc._id}</PageHeader>
               {expenses_list}
             </div>
           )
