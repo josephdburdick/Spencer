@@ -26,9 +26,6 @@ const composer = (props, onData) => {
       Bert.alert(error.reason, 'danger');
     } else {
       years = result;
-      years.forEach((element, index, array) => {
-        console.log(`expensesAggregate.years: years[${index}] => ${element._id}`);
-      });
       onData(null, { years });
     }
   });

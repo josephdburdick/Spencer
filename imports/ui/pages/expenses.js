@@ -19,9 +19,11 @@ export class Expenses extends React.Component {
     this.onSortClick = this.onSortClick.bind(this);
   }
   onYearClick(event) {
+    console.log(`Expenses.onYearClick: target.bsStyle => ${event.target.bsStyle}`);
+    event.target.bsStyle = "success";
     const year = event.target.dataset.year;
     this.setState({ year: year });
-    console.log(`Expenses.onYearClick: year => ${year}`);
+    console.log(`Expenses.onYearClick: year => ${year}, target.bsStyle => ${event.target.bsStyle}`);
   }
   onQuarterClick(event) {
     event.preventDefault();

@@ -1,7 +1,5 @@
-import faker from 'faker';
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
-import { Factory } from 'meteor/dburles:factory';
 
 export const Expenses = new Mongo.Collection('Expenses');
 
@@ -32,6 +30,7 @@ Expenses.schema = new SimpleSchema({
   }
 });
 
+<<<<<<< HEAD
 Expenses.attachSchema(Expenses.schema);
 
 Factory.define('expense', Expenses, {
@@ -77,3 +76,5 @@ Factory.define('expense', Expenses, {
 // for (let i = 0; i < 50; i++) {
 //   Factory.create('expense');
 // }
+
+Expenses.attachSchema(Expenses.schema);
