@@ -88,8 +88,8 @@ export class Expense extends Component {
     this.setState({category: value.split(',')});
     console.log(`state for category after merging state is ${JSON.stringify(this.state.category)}`)
   }
-  handleBusinessChange (event) {
-    this.setState({business: event.value});
+  handleBusinessChange (value) {
+    this.setState({business: value});
   }
   handleToggleEditMode () {
     this.setState({ disabled: !this.state.disabled });
