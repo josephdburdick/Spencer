@@ -71,7 +71,7 @@ export class ExpensesList extends React.Component {
           });
           return (
             <ListGroup className="expenses-list">
-              <ListGroupItem key={groupName} active>{groupName}</ListGroupItem>
+              <ListGroupItem key={groupName} header={groupName} active></ListGroupItem>
               {expensesNode}
             </ListGroup>
           )
