@@ -30,7 +30,6 @@ Expenses.schema = new SimpleSchema({
   }
 });
 
-<<<<<<< HEAD
 Expenses.attachSchema(Expenses.schema);
 
 Factory.define('expense', Expenses, {
