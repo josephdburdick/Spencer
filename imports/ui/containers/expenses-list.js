@@ -12,9 +12,9 @@ const composer = (props, onData) => {
     let expenses = [];
     let pipeline = [];
     let project_stage = null;
-    let match_stage = null;
-    let sort_stage = null;
-    let group_stage = null;
+    // let match_stage = null;
+    // let sort_stage = null;
+    // let group_stage = null;
     project_stage = {
       $project: {
         userId: 1,
@@ -29,7 +29,7 @@ const composer = (props, onData) => {
       }
     };
     pipeline.push(project_stage);
-    if (props.year || props.quarter || props.month) {
+    /*if (props.year || props.quarter || props.month) {
       const and_arguments = [];
       if (props.year) {
         const year_filter = { year : Number.parseInt(props.year) };
@@ -84,7 +84,7 @@ const composer = (props, onData) => {
         }
         pipeline.push(sort_stage);
       }
-    }
+    }*/
     expensesAggregate.call({ pipeline }, (error, result) => {
       if (error) {
         console.log(`composer: error => ${error}`);
