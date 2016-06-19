@@ -12,8 +12,8 @@ export class ExpensesList extends React.Component {
       const year = this.props.year;
       const quarter = this.props.quarter;
       const month = this.props.month;
-      if (year) {
-        if (quarter) {
+      if (year && Number.parseInt(year) != 0) {
+        if (quarter && Number.parseInt(quarter) != 0) {
           switch(Number.parseInt(quarter)) {
             case 1:
               return (expense.year == Number.parseInt(year) && (expense.month == 1 || expense.month == 2 || expense.month == 3));
@@ -25,12 +25,12 @@ export class ExpensesList extends React.Component {
               return (expense.year == Number.parseInt(year) && (expense.month == 10 || expense.month == 11 || expense.month == 12));
           }
         }
-        if (month) {
+        if (month && Number.parseInt(month) != 0) {
           return (expense.year == Number.parseInt(year) && expense.month == Number.parseInt(month));
         }
         return (expense.year == Number.parseInt(year));
       }
-      if (quarter) {
+      if (quarter && Number.parseInt(quarter) != 0) {
         switch(Number.parseInt(quarter)) {
           case 1:
             return (expense.month == 1 || expense.month == 2 || expense.month == 3);
@@ -42,7 +42,7 @@ export class ExpensesList extends React.Component {
             return (expense.month == 10 || expense.month == 11 || expense.month == 12);
         }
       }
-      if (month) {
+      if (month && Number.parseInt(month) != 0) {
         return (expense.month == Number.parseInt(month));
       }
       return true; 
