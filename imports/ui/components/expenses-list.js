@@ -8,7 +8,7 @@ export class ExpensesList extends React.Component {
     super(props);
   }
   render () {
-    const expenses = _.filter(this.props.expenses, (expense) => {
+    let expenses = _.filter(this.props.expenses, (expense) => {
       const year = this.props.year;
       const quarter = this.props.quarter;
       const month = this.props.month;
@@ -47,21 +47,19 @@ export class ExpensesList extends React.Component {
       }
       return true; 
     });
-    /*const where_props = {};
-    let expenses = this.props.expenses;
-    if (this.props.year) {
-       where_props.year = Number.parseInt(this.props.year);
+    if (this.props.sort) {
+      if (this.props.sort.localeCompare('category') == 0) {
+      } else {
+        switch(this.props.sort) {
+           case "price":
+             expenses = _.sortBy(expenses, 'price');
+             break;
+           case "date":
+             expenses = _.sortBy(expenses, 'dateCreated');
+             break;
+        }
+      }
     }
-    if (this.props.quarter) {
-       // where_props.year = Number.parseInt(this.props.year);
-    }
-    if (this.props.month) {
-       where_props.month = Number.parseInt(this.props.month);
-    }
-    if (Object.keys(where_props).length > 0) {
-      expenses = _.where(this.props.expenses, where_props);
-      // expenses = _.filter(this.props.expenses, function(expense){ return expense.year == Number.parseInt(year); });
-    }*/
     console.log(`ExpensesList.render: year => ${this.props.year}, quarter => ${this.props.quarter}, month => ${this.props.month}, sort => ${this.props.sort}`);
     return (
       expenses.length > 0 ? (
@@ -89,4 +87,8 @@ export class ExpensesList extends React.Component {
 
 ExpensesList.propTypes = {
   expenses: React.PropTypes.array,
+  year: React.PropTypes.string,
+  quarter: React.PropTypes.string,
+  month: React.PropTypes.string,
+  sort: React.PropTypes.string
 };
