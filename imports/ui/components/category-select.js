@@ -25,6 +25,7 @@ export default class CategorySelect extends Component {
           disabled={this.props.disabled}
           simpleValue={true}
           allowCreate={true}
+          clearable={false}
         />
       </div>
     )

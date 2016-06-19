@@ -82,10 +82,10 @@ export class Expense extends Component {
   handleDescriptionChange (event) {
     this.setState({description: event.target.value});
   }
-  handleCategoryChange (event) {
-    console.log(event);
-    console.log(`category change value is ${event.value}`)
-    this.setState({category: event.value});
+  handleCategoryChange (value) {
+    console.log(`Expense.handleCategoryChange: value => ${value}`);
+    console.log(`Expense.handleCategoryChange: value.split() => ${value.split(',')}`)
+    this.setState({category: value.split(',')});
     console.log(`state for category after merging state is ${JSON.stringify(this.state.category)}`)
   }
   handleBusinessChange (event) {
