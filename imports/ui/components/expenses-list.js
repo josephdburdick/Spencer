@@ -47,7 +47,7 @@ export class ExpensesList extends React.Component {
       }
       return true; 
     });
-    if (this.props.sort) {
+    if (this.props.sort && !(this.props.sort.localeCompare('none') == 0)) {
       if (this.props.sort.localeCompare('category') == 0) {
         expenses = _.groupBy(expenses, (expense) => {
           return expense.category[0]; 
