@@ -66,10 +66,22 @@ export class ExpensesList extends React.Component {
     console.log(`ExpensesList.render: year => ${this.props.year}, quarter => ${this.props.quarter}, month => ${this.props.month}, sort => ${this.props.sort}`);
     if (this.props.sort && this.props.sort.localeCompare('category') == 0) {
       if (Object.keys(expenses).length > 0) {
-        for (let prop in expenses) {
-          console.log(`expenses.${prop} = ${JSON.stringify(expenses[prop])}`);
-        }
-        return null;
+        const groupNodes = Object.keys(expenses).map(function(groupName) {
+          const expensesNode = (
+            <ListGroup className="expenses-list">
+              {expenses[groupName].map((doc) => {
+                return (<Expense key={ doc._id } {...doc} />)
+              })}
+            </ListGroup>
+          )
+          return (
+            <div>
+              <PageHeader><small>{groupName}</small></PageHeader>
+              {expensesNode}
+            </div>
+          )
+        });
+        return (<div>{groupNodes}</div>);
       } else {
         return ( <Alert bsStyle="warning">No expenses yet.</Alert> );
       }
