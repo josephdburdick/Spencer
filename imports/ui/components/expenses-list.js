@@ -49,6 +49,9 @@ export class ExpensesList extends React.Component {
     });
     if (this.props.sort) {
       if (this.props.sort.localeCompare('category') == 0) {
+        expenses = _.groupBy(expenses, (expense) => {
+          return expense.category[0]; 
+        });
       } else {
         switch(this.props.sort) {
            case "price":
@@ -61,27 +64,28 @@ export class ExpensesList extends React.Component {
       }
     }
     console.log(`ExpensesList.render: year => ${this.props.year}, quarter => ${this.props.quarter}, month => ${this.props.month}, sort => ${this.props.sort}`);
-    return (
-      expenses.length > 0 ? (
-        <ListGroup className="expenses-list">
-          {expenses.map((doc) => {
-            if (doc.expenses) {
-              const expenses_list = doc.expenses.map((expense) => {
-                return (<Expense key={ expense._id } {...expense} />)
-              })
-              return (
-                <div>
-                  <PageHeader key={doc._id}>{doc._id}</PageHeader>
-                  {expenses_list}
-                </div>
-              )
-            } else {
+    if (this.props.sort && this.props.sort.localeCompare('category') == 0) {
+      if (Object.keys(expenses).length > 0) {
+        for (let prop in expenses) {
+          console.log(`expenses.${prop} = ${JSON.stringify(expenses[prop])}`);
+        }
+        return null;
+      } else {
+        return ( <Alert bsStyle="warning">No expenses yet.</Alert> );
+      }
+    } else {
+      if (expenses.length > 0) {
+        return (
+          <ListGroup className="expenses-list">
+            {expenses.map((doc) => {
               return (<Expense key={ doc._id } {...doc} />)
-            }
-          })}
-        </ListGroup>
-      ) : ( <Alert bsStyle="warning">No expenses yet.</Alert> )
-    )
+            })}
+          </ListGroup>
+        )
+      } else {
+        return ( <Alert bsStyle="warning">No expenses yet.</Alert> );
+      }
+    }
   }
 }
 
