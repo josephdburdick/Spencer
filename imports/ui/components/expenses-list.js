@@ -63,22 +63,17 @@ export class ExpensesList extends React.Component {
         }
       }
     }
-    console.log(`ExpensesList.render: year => ${this.props.year}, quarter => ${this.props.quarter}, month => ${this.props.month}, sort => ${this.props.sort}`);
     if (this.props.sort && this.props.sort.localeCompare('category') == 0) {
       if (Object.keys(expenses).length > 0) {
         const groupNodes = Object.keys(expenses).map(function(groupName) {
-          const expensesNode = (
-            <ListGroup className="expenses-list">
-              {expenses[groupName].map((doc) => {
-                return (<Expense key={ doc._id } {...doc} />)
-              })}
-            </ListGroup>
-          )
+          const expensesNode = expenses[groupName].map((doc) => {
+            return (<Expense key={ doc._id } {...doc} />)
+          });
           return (
-            <div>
-              <PageHeader><small>{groupName}</small></PageHeader>
+            <ListGroup className="expenses-list">
+              <ListGroupItem key={groupName} active>{groupName}</ListGroupItem>
               {expensesNode}
-            </div>
+            </ListGroup>
           )
         });
         return (<div>{groupNodes}</div>);
