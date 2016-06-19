@@ -8,8 +8,8 @@ export default class SortByMenuSection extends React.Component {
       <Row className="show-grid expenses-menu-row">
         <Col md={7}>
           <ButtonGroup >
-            <Button bsSize="sm" bsStyle="info" data-sort="category" onClick={this.props.onSortClick}>Category- ??</Button >
-            <Button bsSize="sm" data-sort="price" onClick={this.props.onSortClick}>Price($)</Button>
+            <Button bsSize="sm" bsStyle="info" data-sort="category" onClick={this.props.onSortClick}>Category</Button >
+            <Button bsSize="sm" data-sort="price" onClick={this.props.onSortClick}>Price</Button>
             <Button bsSize="sm" data-sort="date" onClick={this.props.onSortClick}>Date</Button>
           </ButtonGroup>
         </Col>
