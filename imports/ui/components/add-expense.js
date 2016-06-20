@@ -107,7 +107,7 @@ class AddExpense extends Component {
           </Row>
           <Row className="row--half-gutter">
             <Col xs={2} sm={2}>
-              <p>Expense will be added for:<Time value={new Date()} format="YYYY/MM/DD" /></p>
+              <p><Time value={new Date()} format="YYYY/MM/DD" /></p>
             </Col>
           </Row>
           <Row>
