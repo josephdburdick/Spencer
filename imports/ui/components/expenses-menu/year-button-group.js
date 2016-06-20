@@ -7,7 +7,7 @@ export default class YearButtonGroup extends React.Component {
       <Row className="show-grid expenses-menu-row">
         <Col xs={12}>
           <ButtonGroup>
-            <Button key="0" bsSize="sm" data-year="0" onClick={this.props.onYearClick}>All</Button>
+            <Button key="0" bsSize="sm" data-year="0" onClick={this.props.onYearClick} active>All</Button>
             {this.props.years.map((year, index, array) => {
               return (<Button key={index} bsSize="sm" data-year={year._id} onClick={this.props.onYearClick}>{year._id}</Button>)
             })}

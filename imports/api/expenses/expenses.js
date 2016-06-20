@@ -1,5 +1,6 @@
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+import faker from 'faker';
 
 export const Expenses = new Mongo.Collection('Expenses');
 
@@ -72,8 +73,8 @@ Factory.define('expense', Expenses, {
   },
   dateCreated: () => faker.date.between('2014-01-01', '2016-12-31')
 });
-// for (let i = 0; i < 50; i++) {
-//   Factory.create('expense');
-// }
+for (let i = 0; i < 150; i++) {
+  Factory.create('expense');
+}
 
 Expenses.attachSchema(Expenses.schema);
