@@ -5,6 +5,7 @@ import { Bert } from 'meteor/themeteorchef:bert';
 import CategorySelect from './category-select.js';
 import BusinessSelect from './business-select.js';
 import { insertExpense } from '../../api/expenses/methods.js';
+import Time from 'react-time';
 
 class AddExpense extends Component {
   constructor(props) {
@@ -102,6 +103,11 @@ class AddExpense extends Component {
               <FormGroup>
                 <BusinessSelect onChange={ this.handleBusinessChange } value={this.state.business} />
               </FormGroup>
+            </Col>
+          </Row>
+          <Row className="row--half-gutter">
+            <Col xs={2} sm={2}>
+              <p>Expense will be added for:<Time value={new Date()} format="YYYY/MM/DD" /></p>
             </Col>
           </Row>
           <Row>

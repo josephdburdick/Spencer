@@ -6,18 +6,20 @@ import { Bert } from 'meteor/themeteorchef:bert';
 import { updateExpense, removeExpense } from '../../api/expenses/methods.js';
 import CategorySelect from './category-select';
 import BusinessSelect from './business-select';
+import Time from 'react-time';
 
 export class Expense extends Component {
   constructor(props){
     super(props);
     this.state = {
-      _id: this.props._id,
-      price: this.props.price,
-      description: this.props.description,
-      category: this.props.category,
-      business: this.props.business,
-      disabled: this.props.disabled,
-      isProcessing: this.props.isProcessing
+      _id          : this.props._id,
+      price        : this.props.price,
+      description  : this.props.description,
+      category     : this.props.category,
+      business     : this.props.business,
+      dateCreated  : this.props.dateCreated,
+      disabled     : this.props.disabled,
+      isProcessing : this.props.isProcessing
     }
 
     this.handlePriceChange = this.handlePriceChange.bind(this);
@@ -200,6 +202,11 @@ export class Expense extends Component {
                       disabled={ this.state.disabled } />
                   ) }
                 </FormGroup>
+              </Col>
+            </Row>
+            <Row className="row--half-gutter">
+              <Col xs={4} sm={2}>
+                <Time value={this.state.dateCreated} format="YYYY/MM/DD" />
               </Col>
             </Row>
           </Col>

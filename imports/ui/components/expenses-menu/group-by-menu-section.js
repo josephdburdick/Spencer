@@ -8,7 +8,7 @@ export default class GroupByMenuSection extends React.Component {
       <Row className="show-grid expenses-menu-row">
         <Col md={7}>
           <ButtonGroup>
-            <Button bsSize="xs" data-month="0" onClick={this.props.onMonthClick}>All</Button>
+            <Button bsSize="xs" data-month="0" onClick={this.props.onMonthClick} active>All</Button>
             <Button bsSize="xs" data-month="1" onClick={this.props.onMonthClick}>Jan</Button >
             <Button bsSize="xs" data-month="2" onClick={this.props.onMonthClick}>Feb</Button>
             <Button bsSize="xs" data-month="3" onClick={this.props.onMonthClick}>Mar</Button>
@@ -25,7 +25,7 @@ export default class GroupByMenuSection extends React.Component {
         </Col>
         <Col md={5}>
           <ButtonGroup>
-            <Button bsSize="sm" data-quarter="0" onClick={this.props.onQuarterClick}>All</Button>
+            <Button bsSize="sm" data-quarter="0" onClick={this.props.onQuarterClick} active>All</Button>
             <Button bsSize="sm" data-quarter="1" onClick={this.props.onQuarterClick}>1Q</Button>
             <Button bsSize="sm" data-quarter="2" onClick={this.props.onQuarterClick}>2Q</Button>
             <Button bsSize="sm" data-quarter="3" onClick={this.props.onQuarterClick}>3Q</Button>

@@ -47,7 +47,6 @@ export const expensesAggregate = new ValidatedMethod({
   name: "expenses.aggregate",
   validate: null,
   run({ pipeline }) {
-    console.log(`inside aggregation pipeline`)
     if (!this.isSimulation) {
       const expenses = Expenses.aggregate(pipeline, { allowDiskUse: true });
       return expenses;
