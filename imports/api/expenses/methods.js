@@ -9,7 +9,7 @@ export const insertExpense = new ValidatedMethod({
     userId                : { type : String },
     price                 : { type : Number, decimal: true },
     description           : { type : String },
-    category              : { type : [String] },
+    category              : { type : String },
     business              : { type : String },
     dateCreated           : { type : Date }
   }).validator(),
@@ -24,7 +24,7 @@ export const updateExpense = new ValidatedMethod({
     _id: { type: String },
     "update.price"               : { type : Number, decimal: true },
     "update.description"         : { type : String },
-    "update.category"            : { type : [String] },
+    "update.category"            : { type : String },
     "update.business"            : { type : String }
   }).validator(),
   run({ _id, update }) {

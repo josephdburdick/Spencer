@@ -1,6 +1,5 @@
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
-import faker from 'faker';
 
 export const Expenses = new Mongo.Collection('Expenses');
 
@@ -22,15 +21,14 @@ Expenses.schema = new SimpleSchema({
     label: 'Name of the associated business'
   },
   category: {
-    type: [String],
-    label: 'Categories of expense'
+    type: String,
+    label: 'Category of expense'
   },
   dateCreated: {
     type: Date,
     label: 'Date created'
   }
 });
-
 Expenses.attachSchema(Expenses.schema);
 
 Factory.define('expense', Expenses, {
