@@ -37,5 +37,5 @@ CategorySelect.defaultProps = {
   selected: '',
   name  : "category-select",
   disabled  : false,
-  multi : true 
+  multi : false 
 };

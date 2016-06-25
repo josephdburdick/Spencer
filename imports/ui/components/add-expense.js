@@ -42,7 +42,7 @@ class AddExpense extends Component {
       userId: Meteor.userId(),
       price: this.state.price,
       description: this.state.description,
-      category: this.state.category.split(','),
+      category: this.state.category,
       business: this.state.business,
       dateCreated: new Date()
     }, (error) => {

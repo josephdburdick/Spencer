@@ -62,13 +62,8 @@ Factory.define('expense', Expenses, {
                                 "Student Loan",
                                 "Tuition",
                                 "Entertainment" ];
-    const categories = [];
-    const categories_count = faker.random.number({min:1, max:4});
-    for (let i = 0; i < categories_count; i++) {
-      const category_item = faker.random.arrayElement(categories_array);
-      categories.push(category_item);
-    }
-    return categories;
+    const category_item = faker.random.arrayElement(categories_array);
+    return category_item;
   },
   dateCreated: () => faker.date.between('2010-01-01', '2016-12-31')
 });
