@@ -31,10 +31,11 @@ export const updateCategory = new ValidatedMethod({
 export const getCategories = new ValidatedMethod({
   name: 'categories.retrieve',
   validate : new SimpleSchema({}).validator(),
-  run(){
-    Categories.find({
-      userId : {$in: ["admin", Meteor.userId()]} //admin user hardcoded on seeding - so find all global and user specific categories
-    }).fetch()
+  run() {
+    return Categories.find({
+      userId : { $in: ["admin", this.userId] } //admin user hardcoded on seeding - so find all global and user specific categories
+    }).fetch();
+    // return Categories.find({}).fetch();
   }
 })
 

@@ -71,7 +71,6 @@ class AddExpense extends Component {
     console.log(`AddExpense.handleCategoryChange: value => ${value}`);
     this.setState({category: value});
     if (this.addingOption && this.addingOption === true) {
-      // this.setState({addingOption: false});
       this.addingOption = false;
       insertCategory.call({ value: value, label: value }, (error, result) => {
         if (error) {
@@ -86,7 +85,6 @@ class AddExpense extends Component {
 
   handleCategoryCreate(value) {
     console.log(`AddExpense.handleCategoryCreate: value => ${value}`);
-    // this.setState({addingOption: true});
     this.addingOption = true;
     return { value: value, label: value, create: true };
   }
