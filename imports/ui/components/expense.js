@@ -25,6 +25,7 @@ export class Expense extends Component {
     this.handlePriceChange = this.handlePriceChange.bind(this);
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
     this.handleCategoryChange = this.handleCategoryChange.bind(this);
+    this.handleCategoryCreate = this.handleCategoryCreate.bind(this);
     this.handleBusinessChange = this.handleBusinessChange.bind(this);
     this.handleToggleEditMode = this.handleToggleEditMode.bind(this);
     this.handleFormStateChange = this.handleFormStateChange.bind(this);
@@ -86,6 +87,11 @@ export class Expense extends Component {
   }
   handleCategoryChange (value) {
     this.setState({category: value});
+  }
+  handleCategoryCreate(value) {
+    if (!(typeof value === 'undefined' || value == null)) {
+      console.log(`Expense.handleCategoryCreate: value => ${value}`);
+    }
   }
   handleBusinessChange (value) {
     this.setState({business: value});
@@ -183,7 +189,8 @@ export class Expense extends Component {
                   { formControlOrLabel (
                     <CategorySelect
                       ref="category"
-                      onChange={ this.handleCategoryChange.bind(this) }
+                      onChange={ this.handleCategoryChange }
+                      newOptionCreator={ this.handleCategoryCreate }
                       value={this.state.category}
                       disabled={ this.state.disabled } />
                   ) }

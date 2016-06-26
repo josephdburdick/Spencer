@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import React, {Component, PropTypes} from 'react';
 import { Row, Col, FormGroup, FormControl, Well, InputGroup, Button, DropdownButton, MenuItem } from 'react-bootstrap';
 import { Bert } from 'meteor/themeteorchef:bert';
+import { insertCategory } from '../../api/categories/methods.js';
 import CategorySelect from './category-select.js';
 import BusinessSelect from './business-select.js';
 import { insertExpense } from '../../api/expenses/methods.js';
@@ -22,6 +23,7 @@ class AddExpense extends Component {
     this.handlePriceChange = this.handlePriceChange.bind(this);
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
     this.handleCategoryChange = this.handleCategoryChange.bind(this);
+    this.handleCategoryCreate = this.handleCategoryCreate.bind(this);
     this.handleBusinessChange = this.handleBusinessChange.bind(this);
 
     this.handleResetForm = this.handleResetForm.bind(this);
@@ -66,7 +68,27 @@ class AddExpense extends Component {
   }
 
   handleCategoryChange (value) {
+    console.log(`AddExpense.handleCategoryChange: value => ${value}`);
     this.setState({category: value});
+    if (this.addingOption && this.addingOption === true) {
+      // this.setState({addingOption: false});
+      this.addingOption = false;
+      insertCategory.call({ value: value, label: value }, (error, result) => {
+        if (error) {
+          console.log(`addExpense.handleCategoryChange.insertCategory: error => ${error}`);
+          Bert.alert(error.reason, 'danger');
+        } else {
+          console.log(`addExpense.handleCategoryChange.insertCategory: result => ${result}`);
+        }
+      });
+    }
+  }
+
+  handleCategoryCreate(value) {
+    console.log(`AddExpense.handleCategoryCreate: value => ${value}`);
+    // this.setState({addingOption: true});
+    this.addingOption = true;
+    return { value: value, label: value, create: true };
   }
 
   handleBusinessChange (value) {
@@ -96,7 +118,7 @@ class AddExpense extends Component {
           <Row className="row--half-gutter">
             <Col xs={12} sm={6}>
               <FormGroup>
-                <CategorySelect onChange={ this.handleCategoryChange } value={this.state.category} />
+                <CategorySelect onChange={ this.handleCategoryChange } newOptionCreator={ this.handleCategoryCreate } value={this.state.category} />
               </FormGroup>
             </Col>
             <Col xs={12} sm={6}>

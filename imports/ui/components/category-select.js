@@ -20,6 +20,7 @@ export default class CategorySelect extends Component {
           name={this.props.name}
           options={options}
           onChange={this.props.onChange}
+          newOptionCreator={this.props.newOptionCreator}
           value={this.props.value}
           multi={this.props.multi}
           disabled={this.props.disabled}
