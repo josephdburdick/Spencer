@@ -4,6 +4,7 @@ import _ from 'lodash';
 import { Row, Col, ListGroupItem, FormGroup, FormControl, InputGroup, Button } from 'react-bootstrap';
 import { Bert } from 'meteor/themeteorchef:bert';
 import { updateExpense, removeExpense } from '../../api/expenses/methods.js';
+import { insertCategory } from '../../api/categories/methods.js';
 import CategorySelect from './category-select';
 import BusinessSelect from './business-select';
 import Time from 'react-time';
@@ -89,8 +90,19 @@ export class Expense extends Component {
     this.setState({category: value});
   }
   handleCategoryCreate(value) {
+    console.log(`value inside handleCategoryChange is ${value}`)
     if (!(typeof value === 'undefined' || value == null)) {
       console.log(`Expense.handleCategoryCreate: value => ${value}`);
+      insertCategory.call({
+        value : value,
+        label : value,
+      }, (error, response)=>{
+        if(error){
+          Bert.alert(error.reason, 'danger');
+        }else{
+          console.log(`handle category create successful and value ${value} just inserted.`)
+        }
+      })
     }
   }
   handleBusinessChange (value) {
