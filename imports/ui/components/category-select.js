@@ -21,8 +21,8 @@ export default class CategorySelect extends Component {
         console.log(`CategorySelect.getOptions.getCategories: error => ${error}`);
         Bert.alert(error.reason, 'danger');
       } else {
-        categories = result;
-        console.log(`CategorySelect.getOptions.getCategories: result => ${result}`);
+          categories = result;
+          console.log(`CategorySelect.getOptions.getCategories: result => ${result}`);
       }
       callback(null, { options: categories, complete: true });
     });
@@ -30,12 +30,14 @@ export default class CategorySelect extends Component {
 
   render() {
     const options = this.state.categories;
+    console.log(`----- inside  category select render and props are ${JSON.stringify(this.props)} -----`)
+    console.log(`options prop is ${this.props.options}`)
     return (
       <div>
         <Select
           placeholder={this.props.placeholder}
           name={this.props.name}
-          asyncOptions={this.getOptions}
+          options={this.props.options}
           autoload={true}
           onChange={this.props.onChange}
           newOptionCreator={this.props.newOptionCreator}
@@ -52,9 +54,9 @@ export default class CategorySelect extends Component {
 }
 
 CategorySelect.defaultProps = {
-  placeholder: "Add category",
-  selected: '',
-  name  : "category-select",
-  disabled  : false,
-  multi : false 
+  placeholder : "Add category",
+  selected    : '',
+  name        : "category-select",
+  disabled    : false,
+  multi       : false,
 };

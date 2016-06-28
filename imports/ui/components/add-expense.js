@@ -72,21 +72,20 @@ class AddExpense extends Component {
     this.setState({category: value});
     if (this.addingOption && this.addingOption === true) {
       this.addingOption = false;
-      insertCategory.call({ value: value, label: value }, (error, result) => {
-        if (error) {
-          console.log(`addExpense.handleCategoryChange.insertCategory: error => ${error}`);
-          Bert.alert(error.reason, 'danger');
-        } else {
-          console.log(`addExpense.handleCategoryChange.insertCategory: result => ${result}`);
-        }
-      });
     }
   }
 
   handleCategoryCreate(value) {
     console.log(`AddExpense.handleCategoryCreate: value => ${value}`);
     this.addingOption = true;
-    return { value: value, label: value, create: true };
+    insertCategory.call({ value: value, label: value }, (error, result) => {
+      if (error) {
+        console.log(`addExpense.handleCategoryCreate error => ${error}`);
+        Bert.alert(error.reason, 'danger');
+      } else {
+        return { value: value, label: value, create: true };
+      }
+    });
   }
 
   handleBusinessChange (value) {
