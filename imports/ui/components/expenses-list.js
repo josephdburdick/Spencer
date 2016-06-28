@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { ListGroup, ListGroupItem, Alert, PageHeader } from 'react-bootstrap';
 import { Expense } from './expense.js';
+import Tester from '../containers/tester.js';
 import { _ } from 'meteor/underscore';
 
 export class ExpensesList extends React.Component {
@@ -45,12 +46,12 @@ export class ExpensesList extends React.Component {
       if (month && Number.parseInt(month) != 0) {
         return (expense.month == Number.parseInt(month));
       }
-      return true; 
+      return true;
     });
     if (this.props.sort && !(this.props.sort.localeCompare('none') == 0)) {
       if (this.props.sort.localeCompare('category') == 0) {
         expenses = _.groupBy(expenses, (expense) => {
-          return expense.category; 
+          return expense.category;
         });
       } else {
         switch(this.props.sort) {

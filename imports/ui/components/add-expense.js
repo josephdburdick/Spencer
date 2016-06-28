@@ -3,7 +3,7 @@ import React, {Component, PropTypes} from 'react';
 import { Row, Col, FormGroup, FormControl, Well, InputGroup, Button, DropdownButton, MenuItem } from 'react-bootstrap';
 import { Bert } from 'meteor/themeteorchef:bert';
 import { insertCategory } from '../../api/categories/methods.js';
-import CategorySelect from './category-select.js';
+import CategorySelect from '../containers/category-select.js';
 import BusinessSelect from './business-select.js';
 import { insertExpense } from '../../api/expenses/methods.js';
 import Time from 'react-time';

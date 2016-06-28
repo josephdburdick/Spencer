@@ -11,7 +11,7 @@ export default class CategorySelect extends Component {
       categories: categoriesArray
     }
     this.getOptions = this.getOptions.bind(this);
-    //const handle = Meteor.subscribe('categories');
+    const handle = Meteor.subscribe('categories');
   }
 
   getOptions(input, callback) {
@@ -21,23 +21,21 @@ export default class CategorySelect extends Component {
         console.log(`CategorySelect.getOptions.getCategories: error => ${error}`);
         Bert.alert(error.reason, 'danger');
       } else {
-          categories = result;
-          console.log(`CategorySelect.getOptions.getCategories: result => ${result}`);
+        categories = result;
+        console.log(`CategorySelect.getOptions.getCategories: result => ${result}`);
       }
       callback(null, { options: categories, complete: true });
     });
   }
 
   render() {
-    //const options = this.state.categories;
-    //console.log(`----- inside  category select render and props are ${JSON.stringify(this.props)} -----`)
-    //console.log(`options prop is ${this.props.options}`)
+    const options = this.state.categories;
     return (
       <div>
         <Select
           placeholder={this.props.placeholder}
           name={this.props.name}
-          options={this.props.categories}
+          asyncOptions={this.getOptions}
           autoload={true}
           onChange={this.props.onChange}
           newOptionCreator={this.props.newOptionCreator}
@@ -46,25 +44,17 @@ export default class CategorySelect extends Component {
           disabled={this.props.disabled}
           simpleValue={true}
           allowCreate={true}
-          clearable={true}
+          clearable={false}
         />
       </div>
     )
   }
 }
-CategorySelect.defaultProps = {
-  placeholder : "Add category",
-  selected    : '',
-  name        : "category-select",
-  disabled    : false,
-  multi       : false,
-};
 
-CategorySelect.propTypes = {
-  categories       : React.PropTypes.array,
-  newOptionCreator : React.PropTypes.func,
-  placeholder      : React.PropTypes.string,
-  name             : React.PropTypes.string,
-  disabled         : React.PropTypes.bool,
-  mutli            : React.PropTypes.bool,
-}
+CategorySelect.defaultProps = {
+  placeholder: "Add category",
+  selected: '',
+  name  : "category-select",
+  disabled  : false,
+  multi : false
+};

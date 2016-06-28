@@ -22,7 +22,7 @@ const composer = (props, onData) => {
   pipeline.push(group_stage);
   expensesAggregate.call({ pipeline }, (error, result) => {
     if (error) {
-      console.log(`composer: error => ${error}`);
+      console.log(`expenses aggregate composer error => ${error}`);
       Bert.alert(error.reason, 'danger');
     } else {
       years = result;
