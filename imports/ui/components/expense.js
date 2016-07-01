@@ -5,8 +5,8 @@ import { Row, Col, ListGroupItem, FormGroup, FormControl, InputGroup, Button } f
 import { Bert } from 'meteor/themeteorchef:bert';
 import { updateExpense, removeExpense } from '../../api/expenses/methods.js';
 import { insertCategory } from '../../api/categories/methods.js';
-import CategorySelect from './category-select';
-import BusinessSelect from './business-select';
+import CategorySelect from '../containers/category-select';
+import BusinessSelect from '../containers/business-select';
 import Time from 'react-time';
 
 export class Expense extends Component {
@@ -28,6 +28,7 @@ export class Expense extends Component {
     this.handleCategoryChange = this.handleCategoryChange.bind(this);
     this.handleCategoryCreate = this.handleCategoryCreate.bind(this);
     this.handleBusinessChange = this.handleBusinessChange.bind(this);
+    this.handleBusinessCreate = this.handleBusinessCreate.bind(this);
     this.handleToggleEditMode = this.handleToggleEditMode.bind(this);
     this.handleFormStateChange = this.handleFormStateChange.bind(this);
   }
@@ -87,7 +88,9 @@ export class Expense extends Component {
     this.setState({description: event.target.value});
   }
   handleCategoryChange (value) {
-    this.setState({category: value});
+    if( (typeof value.valueOf() == "string") && (value.length > 0)){
+      this.setState({category: value});
+    }
   }
   handleCategoryCreate(value) {
     console.log(`value inside handleCategoryChange is ${value}`)
@@ -106,10 +109,18 @@ export class Expense extends Component {
     }
   }
   handleBusinessChange (value) {
-    this.setState({business: value});
+    console.log(`value of business change is ${value}`);
+    // if( (typeof value.valueOf() == "string") && (value.length > 0)){
+      this.setState({business: value});
+    // }
+
+  }
+  handleBusinessCreate(value){
+    console.log(`inside business create and value is ${value}`)
   }
   handleToggleEditMode () {
     this.setState({ disabled: !this.state.disabled });
+
   }
 
   render() {
@@ -215,7 +226,8 @@ export class Expense extends Component {
                       ref="business"
                       onChange={ this.handleBusinessChange }
                       value={this.state.business}
-                      disabled={ this.state.disabled } />
+                      disabled={ this.state.disabled }
+                      newOptionCreator={this.handleBusinessCreate} />
                   ) }
                 </FormGroup>
               </Col>

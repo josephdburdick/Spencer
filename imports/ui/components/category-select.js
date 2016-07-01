@@ -7,9 +7,6 @@ import { getCategories } from '../../api/categories/methods.js';
 export default class CategorySelect extends Component {
   constructor(props){
     super(props);
-    this.state = {
-      categories: categoriesArray
-    }
     this.getOptions = this.getOptions.bind(this);
     //const handle = Meteor.subscribe('categories');
   }
@@ -29,24 +26,18 @@ export default class CategorySelect extends Component {
   }
 
   render() {
-    //const options = this.state.categories;
-    //console.log(`----- inside  category select render and props are ${JSON.stringify(this.props)} -----`)
-    //console.log(`options prop is ${this.props.options}`)
+    console.log('inside category-select render')
     return (
       <div>
         <Select
           placeholder={this.props.placeholder}
           name={this.props.name}
           options={this.props.categories}
-          autoload={true}
           onChange={this.props.onChange}
           newOptionCreator={this.props.newOptionCreator}
           value={this.props.value}
           multi={this.props.multi}
           disabled={this.props.disabled}
-          simpleValue={true}
-          allowCreate={true}
-          clearable={true}
         />
       </div>
     )
@@ -58,6 +49,10 @@ CategorySelect.defaultProps = {
   name        : "category-select",
   disabled    : false,
   multi       : false,
+  allowCreate : true,
+  clearable   : true,
+  simpleValue : true,
+  autoload    : true,
 };
 
 CategorySelect.propTypes = {

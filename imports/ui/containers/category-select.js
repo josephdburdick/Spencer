@@ -8,7 +8,7 @@ const composer = (props, onData) => {
   const subscription = Meteor.subscribe('categories');
   if (subscription.ready()) {
     const categories = Categories.find().fetch();
-    console.log(`CATEGORIES FROM SUB ARE ${JSON.stringify(categories)}`)
+    // console.log(`CATEGORIES FROM SUB ARE ${JSON.stringify(categories)}`)
     onData(null, { categories });
   }
 }
