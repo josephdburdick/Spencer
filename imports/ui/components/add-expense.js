@@ -19,14 +19,14 @@ class AddExpense extends Component {
       business: ''
     };
 
-    this.handleInsertExpense = this.handleInsertExpense.bind(this);
-    this.handlePriceChange = this.handlePriceChange.bind(this);
+    this.handleInsertExpense     = this.handleInsertExpense.bind(this);
+    this.handlePriceChange       = this.handlePriceChange.bind(this);
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
-    this.handleCategoryChange = this.handleCategoryChange.bind(this);
-    this.handleCategoryCreate = this.handleCategoryCreate.bind(this);
-    this.handleBusinessChange = this.handleBusinessChange.bind(this);
-
-    this.handleResetForm = this.handleResetForm.bind(this);
+    this.handleCategoryChange    = this.handleCategoryChange.bind(this);
+    this.handleCategoryCreate    = this.handleCategoryCreate.bind(this);
+    this.handleBusinessChange    = this.handleBusinessChange.bind(this);
+    this.handleBusinessCreate     = this.handleBusinessCreate.bind(this);
+    this.handleResetForm         = this.handleResetForm.bind(this);
   }
   handleResetForm () {
     this.setState({
@@ -87,8 +87,25 @@ class AddExpense extends Component {
       }
     });
   }
+  handleBusinessCreate(value) {
+    // console.log(`window.event is ${window.event}`);
+    // const charCode = window.event.keyCode || window.event.which;
+    // const charStr = String.fromCharCode(charCode);
+    // alert(charStr)
+    console.log(`AddExpense.handleBusinessCreate: value => ${value}`);
+    //this.addingOption = true;
+    // insertBusiness.call({ value: value, label: value }, (error, result) => {
+    //   if (error) {
+    //     console.log(`addExpense.handleCategoryCreate error => ${error}`);
+    //     Bert.alert(error.reason, 'danger');
+    //   } else {
+    //     return { value: value, label: value, create: true };
+    //   }
+    // });
+  }
 
   handleBusinessChange (value) {
+    console.log(`AddExpense.handleBusinessChange: value => ${value}`);
     this.setState({business: value});
   }
 
@@ -115,12 +132,12 @@ class AddExpense extends Component {
           <Row className="row--half-gutter">
             <Col xs={12} sm={6}>
               <FormGroup>
-                <CategorySelect onChange={ this.handleCategoryChange } newOptionCreator={ this.handleCategoryCreate } value={this.state.category} />
+                <CategorySelect onChange={this.handleCategoryChange} newOptionCreator={this.handleCategoryCreate} value={this.state.category} />
               </FormGroup>
             </Col>
             <Col xs={12} sm={6}>
               <FormGroup>
-                <BusinessSelect onChange={ this.handleBusinessChange } value={this.state.business} />
+                <BusinessSelect onChange={this.handleBusinessChange} newOptionCreator={this.handleBusinessCreate} value={this.state.business}  />
               </FormGroup>
             </Col>
           </Row>

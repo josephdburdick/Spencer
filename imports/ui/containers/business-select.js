@@ -1,5 +1,5 @@
 import { composeWithTracker } from 'react-komposer';
-import  BusinessSelect  from '../components/category-select.js';
+import  BusinessSelect  from '../components/business-select.js';
 import { Businesses }   from '../../api/businesses/businesses.js'
 import { Loading } from '../components/loading.js';
 import { Meteor } from 'meteor/meteor';

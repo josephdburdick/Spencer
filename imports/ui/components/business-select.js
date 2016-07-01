@@ -8,6 +8,7 @@ export default class BusinessSelect extends Component {
   }
 
   render() {
+    console.log(`inside business select render`);
     return (
       <div>
         <Select
