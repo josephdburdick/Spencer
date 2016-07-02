@@ -4,8 +4,9 @@ import { Row, Col, FormGroup, FormControl, Well, InputGroup, Button, DropdownBut
 import { Bert } from 'meteor/themeteorchef:bert';
 import { insertCategory } from '../../api/categories/methods.js';
 import CategorySelect from '../containers/category-select.js';
-import BusinessSelect from './business-select.js';
+import BusinessSelect from '../containers/business-select.js';
 import { insertExpense } from '../../api/expenses/methods.js';
+import { insertBusiness } from '../../api/businesses/methods.js';
 import Time from 'react-time';
 
 class AddExpense extends Component {
@@ -25,7 +26,7 @@ class AddExpense extends Component {
     this.handleCategoryChange    = this.handleCategoryChange.bind(this);
     this.handleCategoryCreate    = this.handleCategoryCreate.bind(this);
     this.handleBusinessChange    = this.handleBusinessChange.bind(this);
-    this.handleBusinessCreate     = this.handleBusinessCreate.bind(this);
+    this.handleBusinessCreate    = this.handleBusinessCreate.bind(this);
     this.handleResetForm         = this.handleResetForm.bind(this);
   }
   handleResetForm () {
@@ -60,53 +61,42 @@ class AddExpense extends Component {
   }
 
   handlePriceChange (event) {
+    event.preventDefault();
     this.setState({price: parseFloat(event.target.value) });
   }
 
   handleDescriptionChange (event) {
+    event.preventDefault()
     this.setState({description: event.target.value});
   }
-
   handleCategoryChange (value) {
-    console.log(`AddExpense.handleCategoryChange: value => ${value}`);
-    this.setState({category: value});
-    if (this.addingOption && this.addingOption === true) {
-      this.addingOption = false;
+      console.log(`AddExpense.handleCategoryChange: value => ${value}`);
+      if( (typeof value.valueOf() == "string") && (value.length > 0)){
+        this.setState({category: value});
+      }
+      if (this.addingOption && this.addingOption === true) {
+        this.addingOption = false;
+        insertCategory.call({ value: value, label: value }, (error, result) => {
+          if (error) {
+            console.log(`addExpense.handleCategoryChange.insertCategory: error => ${error}`);
+            Bert.alert(error.reason, 'danger');
+          } else {
+            console.log(`addExpense.handleCategoryChange.insertCategory: result => ${result}`);
+          }
+        });
+      }
     }
-  }
-
   handleCategoryCreate(value) {
     console.log(`AddExpense.handleCategoryCreate: value => ${value}`);
     this.addingOption = true;
-    insertCategory.call({ value: value, label: value }, (error, result) => {
-      if (error) {
-        console.log(`addExpense.handleCategoryCreate error => ${error}`);
-        Bert.alert(error.reason, 'danger');
-      } else {
-        return { value: value, label: value, create: true };
-      }
-    });
+    return { value: value, label: value, create: true };
   }
   handleBusinessCreate(value) {
-    // console.log(`window.event is ${window.event}`);
-    // const charCode = window.event.keyCode || window.event.which;
-    // const charStr = String.fromCharCode(charCode);
-    // alert(charStr)
-    console.log(`AddExpense.handleBusinessCreate: value => ${value}`);
-    //this.addingOption = true;
-    // insertBusiness.call({ value: value, label: value }, (error, result) => {
-    //   if (error) {
-    //     console.log(`addExpense.handleCategoryCreate error => ${error}`);
-    //     Bert.alert(error.reason, 'danger');
-    //   } else {
-    //     return { value: value, label: value, create: true };
-    //   }
-    // });
+
   }
 
   handleBusinessChange (value) {
-    console.log(`AddExpense.handleBusinessChange: value => ${value}`);
-    this.setState({business: value});
+
   }
 
   render() {

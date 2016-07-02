@@ -3,13 +3,15 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
 
 export const insertBusiness = new ValidatedMethod({
-  name: 'businesses.insert',
+  name: 'business.insert',
   validate: new SimpleSchema({
-    userId: { type: String },
-    title: { type: String }
+    value: { type: String },
+    label: {type : String},
   }).validator(),
   run(document) {
-    Businesses.insert(document);
+    console.log(`new bussiness insert, and new user id is ${Meteor.userId()}`)
+    document["userId"] = Meteor.userId();
+    Categories.insert(document);
   },
 });
 

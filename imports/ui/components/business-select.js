@@ -17,11 +17,8 @@ export default class BusinessSelect extends Component {
           options={this.props.businesses}
           onChange={this.props.onChange}
           value={this.props.value}
-          multi={this.props.multi}
           disabled={this.props.disabled}
-          simpleValue={true}
-          allowCreate={true}
-          newOptionCreator= {this.props.newOptionCreator}
+          allowCreate
         />
       </div>
     )
@@ -38,5 +35,4 @@ BusinessSelect.defaultProps = {
 
 BusinessSelect.propTypes = {
     businesses       : React.PropTypes.array,
-    newOptionCreator : React.PropTypes.func,
 }

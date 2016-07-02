@@ -34,10 +34,10 @@ export default class CategorySelect extends Component {
           name={this.props.name}
           options={this.props.categories}
           onChange={this.props.onChange}
+          newOptionCreator={this.props.newOptionCreator}
           value={this.props.value}
           disabled={this.props.disabled}
           allowCreate={true}
-          multi
         />
       </div>
     )
