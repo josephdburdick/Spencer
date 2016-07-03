@@ -9,9 +9,12 @@ export const insertBusiness = new ValidatedMethod({
     label: {type : String},
   }).validator(),
   run(document) {
-    console.log(`new bussiness insert, and new user id is ${Meteor.userId()}`)
-    document["userId"] = Meteor.userId();
-    Categories.insert(document);
+    if(Businesses.findOne({value: document["value"]})){
+      console.log(`found business ${document["value"]} so not inserting`)
+    } else{
+      document["userId"] = Meteor.userId();
+      Businesses.insert(document);
+    }
   },
 });
 

@@ -5,6 +5,7 @@ import { Row, Col, ListGroupItem, FormGroup, FormControl, InputGroup, Button } f
 import { Bert } from 'meteor/themeteorchef:bert';
 import { updateExpense, removeExpense } from '../../api/expenses/methods.js';
 import { insertCategory } from '../../api/categories/methods.js';
+import { insertBusiness } from '../../api/businesses/methods.js';
 import CategorySelect from '../containers/category-select';
 import BusinessSelect from '../containers/business-select';
 import Time from 'react-time';
@@ -91,36 +92,58 @@ export class Expense extends Component {
     if( (typeof value.valueOf() == "string") && (value.length > 0)){
       this.setState({category: value});
     }
-  }
-  handleCategoryCreate(value) {
-    console.log(`value inside handleCategoryChange is ${value}`)
-    if (!(typeof value === 'undefined' || value == null)) {
-      console.log(`Expense.handleCategoryCreate: value => ${value}`);
-      insertCategory.call({
-        value : value,
-        label : value,
-      }, (error, response)=>{
-        if(error){
+    if (this.addingCategory && this.addingCategory === true) {
+      this.addingCategory = false;
+      insertCategory.call({ value: value, label: value }, (error, result) => {
+        if (error) {
           Bert.alert(error.reason, 'danger');
-        }else{
-          console.log(`handle category create successful and value ${value} just inserted.`)
+        } else {
         }
-      })
+      });
     }
   }
-  handleBusinessChange (value) {
-    console.log(`value of business change is ${value}`);
-    // if( (typeof value.valueOf() == "string") && (value.length > 0)){
-      this.setState({business: value});
-    // }
-
+  handleCategoryChange (value) {
+    if( (typeof value.valueOf() == "string") && (value.length > 0)){
+      this.setState({category: value});
+      if (this.addingCategory && this.addingCategory === true) {
+        this.addingCategory = false;
+        insertCategory.call({ value: value, label: value }, (error, result) => {
+          if (error) {
+            console.log(`addExpense.handleCategoryChange.insertCategory: error => ${error}`);
+            Bert.alert(error.reason, 'danger');
+          } else {
+            console.log(`addExpense.handleCategoryChange.insertCategory: result => ${result}`);
+          }
+        });
+      }
+    }
   }
-  handleBusinessCreate(value){
-    console.log(`inside business create and value is ${value}`)
+  handleCategoryCreate(value) {
+    this.addingCategory = true;
+    return { value: value, label: value, create: true };
+  }
+  handleBusinessCreate(value) {
+    this.addingBusiness = true;
+    return { value: value, label: value, create: true };
+  }
+
+  handleBusinessChange (value) {
+    if( (typeof value.valueOf() == "string") && (value.length > 0)){
+      this.setState({business: value});
+      if (this.addingBusiness && this.addingBusiness === true) {
+        this.addingBusiness = false;
+        insertBusiness.call({ value: value, label: value }, (error, result) => {
+          if (error) {
+            Bert.alert(error.reason, 'danger');
+          } else{
+            console.log(`just inserted a the business ${value}`)
+          }
+        });
+      }
+    }
   }
   handleToggleEditMode () {
     this.setState({ disabled: !this.state.disabled });
-
   }
 
   render() {

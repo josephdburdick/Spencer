@@ -70,35 +70,45 @@ class AddExpense extends Component {
     this.setState({description: event.target.value});
   }
   handleCategoryChange (value) {
-    console.log(`AddExpense.handleCategoryChange: value => ${value}`);
     if( (typeof value.valueOf() == "string") && (value.length > 0)){
       this.setState({category: value});
-    }
-    if (this.addingOption && this.addingOption === true) {
-      this.addingOption = false;
-      insertCategory.call({ value: value, label: value }, (error, result) => {
-        if (error) {
-          console.log(`addExpense.handleCategoryChange.insertCategory: error => ${error}`);
-          Bert.alert(error.reason, 'danger');
-        } else {
-          console.log(`addExpense.handleCategoryChange.insertCategory: result => ${result}`);
-        }
-      });
+      if (this.addingCategory && this.addingCategory === true) {
+        this.addingCategory = false;
+        insertCategory.call({ value: value, label: value }, (error, result) => {
+          if (error) {
+            console.log(`addExpense.handleCategoryChange.insertCategory: error => ${error}`);
+            Bert.alert(error.reason, 'danger');
+          } else {
+            console.log(`addExpense.handleCategoryChange.insertCategory: result => ${result}`);
+          }
+        });
+      }
     }
   }
   handleCategoryCreate(value) {
-    console.log(`AddExpense.handleCategoryCreate: value => ${value}`);
-    this.addingOption = true;
+    this.addingCategory = true;
     return { value: value, label: value, create: true };
   }
   handleBusinessCreate(value) {
-
+    this.addingBusiness = true;
+    return { value: value, label: value, create: true };
   }
 
   handleBusinessChange (value) {
-
+    if( (typeof value.valueOf() == "string") && (value.length > 0)){
+      this.setState({business: value});
+      if (this.addingBusiness && this.addingBusiness === true) {
+        this.addingBusiness = false;
+        insertBusiness.call({ value: value, label: value }, (error, result) => {
+          if (error) {
+            Bert.alert(error.reason, 'danger');
+          } else{
+            console.log(`just inserted a the business ${value}`)
+          }
+        });
+      }
+    }
   }
-
   render() {
     let isProcessing = this.state.isProcessing;
     return (

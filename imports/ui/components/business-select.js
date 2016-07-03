@@ -15,6 +15,7 @@ export default class BusinessSelect extends Component {
           placeholder={this.props.placeholder}
           name={this.props.name}
           options={this.props.businesses}
+          newOptionCreator={this.props.newOptionCreator}
           onChange={this.props.onChange}
           value={this.props.value}
           disabled={this.props.disabled}
@@ -35,4 +36,9 @@ BusinessSelect.defaultProps = {
 
 BusinessSelect.propTypes = {
     businesses       : React.PropTypes.array,
+    newOptionCreator : React.PropTypes.func,
+    placeholder      : React.PropTypes.string,
+    name             : React.PropTypes.string,
+    disabled         : React.PropTypes.bool,
+    mutli            : React.PropTypes.bool,
 }
