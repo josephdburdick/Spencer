@@ -10,9 +10,12 @@ export const insertCategory = new ValidatedMethod({
     label: {type : String},
   }).validator(),
   run(document) {
-    console.log(`new category run, and new user id is ${Meteor.userId()}`)
-    document["userId"] = Meteor.userId();
-    Categories.insert(document);
+    if(Categories.findOne({value: document["value"]})){
+      console.log(`find the value ${document["value"]} so I am not going to insert now`)
+    } else{
+      document["userId"] = Meteor.userId();
+      Categories.insert(document);
+    }
   },
 });
 

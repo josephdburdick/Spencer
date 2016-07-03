@@ -27,6 +27,7 @@ export default class CategorySelect extends Component {
 
   render() {
     console.log('inside category-select render')
+    console.log(`categories size is ${this.props.categories.length}`)
     return (
       <div>
         <Select

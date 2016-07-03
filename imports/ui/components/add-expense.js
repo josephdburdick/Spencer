@@ -70,22 +70,22 @@ class AddExpense extends Component {
     this.setState({description: event.target.value});
   }
   handleCategoryChange (value) {
-      console.log(`AddExpense.handleCategoryChange: value => ${value}`);
-      if( (typeof value.valueOf() == "string") && (value.length > 0)){
-        this.setState({category: value});
-      }
-      if (this.addingOption && this.addingOption === true) {
-        this.addingOption = false;
-        insertCategory.call({ value: value, label: value }, (error, result) => {
-          if (error) {
-            console.log(`addExpense.handleCategoryChange.insertCategory: error => ${error}`);
-            Bert.alert(error.reason, 'danger');
-          } else {
-            console.log(`addExpense.handleCategoryChange.insertCategory: result => ${result}`);
-          }
-        });
-      }
+    console.log(`AddExpense.handleCategoryChange: value => ${value}`);
+    if( (typeof value.valueOf() == "string") && (value.length > 0)){
+      this.setState({category: value});
     }
+    if (this.addingOption && this.addingOption === true) {
+      this.addingOption = false;
+      insertCategory.call({ value: value, label: value }, (error, result) => {
+        if (error) {
+          console.log(`addExpense.handleCategoryChange.insertCategory: error => ${error}`);
+          Bert.alert(error.reason, 'danger');
+        } else {
+          console.log(`addExpense.handleCategoryChange.insertCategory: result => ${result}`);
+        }
+      });
+    }
+  }
   handleCategoryCreate(value) {
     console.log(`AddExpense.handleCategoryCreate: value => ${value}`);
     this.addingOption = true;
