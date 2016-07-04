@@ -33,7 +33,12 @@ if (!Categories.find().count()) {
 }
 
 Factory.define('expense', Expenses, {
-  userId: () => faker.random.uuid(),
+
+  //--------------------------------------------------------
+  //---------copy and paste your  userId here --------------
+  //--------------------------------------------------------
+
+  userId: () => "wseNk5hirtQkKjdMo",
   price: () => faker.commerce.price(),
   description: () => faker.commerce.productName(),
   business: () => faker.company.companyName(),
@@ -69,7 +74,7 @@ Factory.define('expense', Expenses, {
 });
 
 if (!Expenses.find().count()) {
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 200; i++) {
     Factory.create('expense');
   }
 }
