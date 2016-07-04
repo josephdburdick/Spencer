@@ -24,14 +24,14 @@ export class Expense extends Component {
       isProcessing : this.props.isProcessing
     }
 
-    this.handlePriceChange = this.handlePriceChange.bind(this);
+    this.handlePriceChange       = this.handlePriceChange.bind(this);
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
-    this.handleCategoryChange = this.handleCategoryChange.bind(this);
-    this.handleCategoryCreate = this.handleCategoryCreate.bind(this);
-    this.handleBusinessChange = this.handleBusinessChange.bind(this);
-    this.handleBusinessCreate = this.handleBusinessCreate.bind(this);
-    this.handleToggleEditMode = this.handleToggleEditMode.bind(this);
-    this.handleFormStateChange = this.handleFormStateChange.bind(this);
+    this.handleCategoryChange    = this.handleCategoryChange.bind(this);
+    this.handleCategoryCreate    = this.handleCategoryCreate.bind(this);
+    this.handleBusinessChange    = this.handleBusinessChange.bind(this);
+    this.handleBusinessCreate    = this.handleBusinessCreate.bind(this);
+    this.handleToggleEditMode    = this.handleToggleEditMode.bind(this);
+    this.handleFormStateChange   = this.handleFormStateChange.bind(this);
   }
 
   handleUpdateExpense (expenseId, event){

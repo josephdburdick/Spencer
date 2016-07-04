@@ -53,14 +53,3 @@ export const expensesAggregate = new ValidatedMethod({
     }
   },
 });
-
-export const expensesFind = new ValidatedMethod({
-  name: "expenses.find",
-  validate: null,
-  run( findDetails ) {
-    if (!this.isSimulation) {
-      const expenses = Expenses.find({}, findDetails).fetch();
-      return expenses;
-    }
-  },
-});

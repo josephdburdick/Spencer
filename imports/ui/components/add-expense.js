@@ -19,7 +19,6 @@ class AddExpense extends Component {
       category: '',
       business: ''
     };
-
     this.handleInsertExpense     = this.handleInsertExpense.bind(this);
     this.handlePriceChange       = this.handlePriceChange.bind(this);
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
