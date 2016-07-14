@@ -7,7 +7,7 @@ export const insertCategory = new ValidatedMethod({
   name: 'category.insert',
   validate: new SimpleSchema({
     value: { type: String },
-    label: {type : String},
+    label: { type : String }
   }).validator(),
   run(document) {
     if(Categories.findOne({value: document["value"]})){
@@ -16,7 +16,7 @@ export const insertCategory = new ValidatedMethod({
       document["userId"] = Meteor.userId();
       Categories.insert(document);
     }
-  },
+  }
 });
 
 export const updateCategory = new ValidatedMethod({
@@ -24,11 +24,11 @@ export const updateCategory = new ValidatedMethod({
   validate: new SimpleSchema({
     _id: { type: String },
     'update.value': { type: String},
-    'update.label': {type : String},
+    'update.label': {type : String}
   }).validator(),
   run({ _id, update }) {
     Categories.update(_id, { $set: update });
-  },
+  }
 });
 
 export const getCategories = new ValidatedMethod({
@@ -45,9 +45,9 @@ export const getCategories = new ValidatedMethod({
 export const removeCategory = new ValidatedMethod({
   name: 'category.remove',
   validate: new SimpleSchema({
-    _id: { type: String },
+    _id: { type: String }
   }).validator(),
   run({ _id }) {
     Categories.remove(_id);
-  },
+  }
 });

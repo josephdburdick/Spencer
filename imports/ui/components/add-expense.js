@@ -1,6 +1,14 @@
 import { Meteor } from 'meteor/meteor';
-import React, {Component, PropTypes} from 'react';
-import { Row, Col, FormGroup, FormControl, Well, InputGroup, Button, DropdownButton, MenuItem } from 'react-bootstrap';
+import React, { Component, PropTypes } from 'react';
+import {
+  Row,
+  Col,
+  FormGroup,
+  FormControl,
+  Well,
+  InputGroup,
+  Button
+} from 'react-bootstrap';
 import { Bert } from 'meteor/themeteorchef:bert';
 import { insertCategory } from '../../api/categories/methods.js';
 import CategorySelect from '../containers/category-select.js';
@@ -19,16 +27,17 @@ class AddExpense extends Component {
       category: '',
       business: ''
     };
-    this.handleInsertExpense     = this.handleInsertExpense.bind(this);
-    this.handlePriceChange       = this.handlePriceChange.bind(this);
+
+    this.handleInsertExpense = this.handleInsertExpense.bind(this);
+    this.handlePriceChange = this.handlePriceChange.bind(this);
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
-    this.handleCategoryChange    = this.handleCategoryChange.bind(this);
-    this.handleCategoryCreate    = this.handleCategoryCreate.bind(this);
-    this.handleBusinessChange    = this.handleBusinessChange.bind(this);
-    this.handleBusinessCreate    = this.handleBusinessCreate.bind(this);
-    this.handleResetForm         = this.handleResetForm.bind(this);
+    this.handleCategoryChange = this.handleCategoryChange.bind(this);
+    this.handleCategoryCreate = this.handleCategoryCreate.bind(this);
+    this.handleBusinessChange = this.handleBusinessChange.bind(this);
+    this.handleBusinessCreate = this.handleBusinessCreate.bind(this);
+    this.handleResetForm = this.handleResetForm.bind(this);
   }
-  handleResetForm () {
+  handleResetForm() {
     this.setState({
       isProcessing: false,
       price: 0,
@@ -49,9 +58,8 @@ class AddExpense extends Component {
       dateCreated: new Date()
     }, (error) => {
       if (error) {
-        console.log(error);
         Bert.alert(error.reason, 'danger');
-        this.setState({isProcessing: false});
+        this.setState({ isProcessing: false });
       } else {
         Bert.alert('Expense added!', 'success');
         this.handleResetForm();
@@ -61,24 +69,24 @@ class AddExpense extends Component {
 
   handlePriceChange (event) {
     event.preventDefault();
-    this.setState({price: parseFloat(event.target.value) });
+    this.setState({ price: parseFloat(event.target.value) });
   }
 
   handleDescriptionChange (event) {
     event.preventDefault()
-    this.setState({description: event.target.value});
+    this.setState({ description: event.target.value });
   }
   handleCategoryChange (value) {
     if( (typeof value.valueOf() == "string") && (value.length > 0)){
-      this.setState({category: value});
+      this.setState({ category: value });
       if (this.addingCategory && this.addingCategory === true) {
         this.addingCategory = false;
         insertCategory.call({ value: value, label: value }, (error, result) => {
           if (error) {
-            console.log(`addExpense.handleCategoryChange.insertCategory: error => ${error}`);
+            // console.log(`addExpense.handleCategoryChange.insertCategory: error => ${error}`);
             Bert.alert(error.reason, 'danger');
           } else {
-            console.log(`addExpense.handleCategoryChange.insertCategory: result => ${result}`);
+            // console.log(`addExpense.handleCategoryChange.insertCategory: result => ${result}`);
           }
         });
       }
@@ -86,23 +94,23 @@ class AddExpense extends Component {
   }
   handleCategoryCreate(value) {
     this.addingCategory = true;
-    return { value: value, label: value, create: true };
+    return { value, label: value, create: true };
   }
   handleBusinessCreate(value) {
     this.addingBusiness = true;
-    return { value: value, label: value, create: true };
+    return { value, label: value, create: true };
   }
 
-  handleBusinessChange (value) {
-    if( (typeof value.valueOf() == "string") && (value.length > 0)){
-      this.setState({business: value});
+  handleBusinessChange(value) {
+    if ((typeof value.valueOf() == "string") && (value.length > 0)){
+      this.setState({ business: value });
       if (this.addingBusiness && this.addingBusiness === true) {
         this.addingBusiness = false;
-        insertBusiness.call({ value: value, label: value }, (error, result) => {
+        insertBusiness.call({ value, label: value }, (error, result) => {
           if (error) {
             Bert.alert(error.reason, 'danger');
-          } else{
-            console.log(`just inserted a the business ${value}`)
+          } else {
+            // console.log(`just inserted a the business ${value}`)
           }
         });
       }
@@ -116,14 +124,20 @@ class AddExpense extends Component {
           <Row className="row--half-gutter">
             <Col xs={12} sm={9}>
               <FormGroup>
-                <FormControl type="text" onChange={this.handleDescriptionChange} value={this.state.description} placeholder="Type a description of expense"/>
+                <FormControl type="text"
+                  onChange={this.handleDescriptionChange}
+                  value={this.state.description} placeholder="Type a description of expense"
+                />
               </FormGroup>
             </Col>
             <Col xs={12} sm={3}>
               <FormGroup>
                 <InputGroup>
                   <InputGroup.Addon>$</InputGroup.Addon>
-                  <FormControl type="number" min="0" onChange={this.handlePriceChange} value={this.state.price} placeholder="Price"/>
+                  <FormControl type="number" min="0"
+                    onChange={this.handlePriceChange}
+                    value={this.state.price} placeholder="Price"
+                  />
                 </InputGroup>
               </FormGroup>
             </Col>
@@ -131,12 +145,20 @@ class AddExpense extends Component {
           <Row className="row--half-gutter">
             <Col xs={12} sm={6}>
               <FormGroup>
-                <CategorySelect onChange={this.handleCategoryChange} newOptionCreator={this.handleCategoryCreate} value={this.state.category} />
+                <CategorySelect
+                  onChange={this.handleCategoryChange}
+                  newOptionCreator={this.handleCategoryCreate}
+                  value={this.state.category}
+                />
               </FormGroup>
             </Col>
             <Col xs={12} sm={6}>
               <FormGroup>
-                <BusinessSelect onChange={this.handleBusinessChange} newOptionCreator={this.handleBusinessCreate} value={this.state.business}  />
+                <BusinessSelect
+                  onChange={this.handleBusinessChange}
+                  newOptionCreator={this.handleBusinessCreate}
+                  value={this.state.business}
+                />
               </FormGroup>
             </Col>
           </Row>

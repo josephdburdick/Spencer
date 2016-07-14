@@ -36,8 +36,8 @@ describe('Expenses methods', function () {
     updateExpense.call({
       _id,
       update: {
-        description: 'Apple Power Mac Pro Supreme OS Eleventy-Billion',
-      },
+        description: 'Apple Power Mac Pro Supreme OS Eleventy-Billion'
+      }
     });
 
     const getExpense = Expenses.findOne(_id);

@@ -6,7 +6,7 @@ export const insertBusiness = new ValidatedMethod({
   name: 'business.insert',
   validate: new SimpleSchema({
     value: { type: String },
-    label: {type : String},
+    label: { type : String }
   }).validator(),
   run(document) {
     if(Businesses.findOne({value: document["value"]})){
@@ -15,26 +15,26 @@ export const insertBusiness = new ValidatedMethod({
       document["userId"] = Meteor.userId();
       Businesses.insert(document);
     }
-  },
+  }
 });
 
 export const updateBusinesse = new ValidatedMethod({
   name: 'businesses.update',
   validate: new SimpleSchema({
     _id: { type: String },
-    'update.title': { type: String, optional: true },
+    'update.title': { type: String, optional: true }
   }).validator(),
   run({ _id, update }) {
     Businesses.update(_id, { $set: update });
-  },
+  }
 });
 
 export const removeBusiness = new ValidatedMethod({
   name: 'businesses.remove',
   validate: new SimpleSchema({
-    _id: { type: String },
+    _id: { type: String }
   }).validator(),
   run({ _id }) {
     Businesses.remove(_id);
-  },
+  }
 });
